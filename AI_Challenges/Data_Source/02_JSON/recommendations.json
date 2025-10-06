@@ -1,0 +1,809 @@
+[
+  {
+    "id": "rec1",
+    "product": "Running Shoes",
+    "suggestions": [
+      "Water Bottle",
+      "Headlamp"
+    ]
+  },
+  {
+    "id": "rec2",
+    "product": "Hiking Backpack",
+    "suggestions": [
+      "Water Bottle",
+      "Tent"
+    ]
+  },
+  {
+    "id": "rec3",
+    "product": "Tent",
+    "suggestions": [
+      "all-season.",
+      "Sleeping Bag",
+      "Lantern"
+    ]
+  },
+  {
+    "id": "rec4",
+    "product": "Water Bottle",
+    "suggestions": [
+      "1L capacity.",
+      "Running Shoes",
+      "Headlamp"
+    ]
+  },
+  {
+    "id": "rec5",
+    "product": "Headlamp",
+    "suggestions": [
+      "3 brightness levels.",
+      "Running Shoes",
+      "Hiking Backpack"
+    ]
+  },
+  {
+    "id": "rec6",
+    "product": "Lantern",
+    "suggestions": [
+      "Tent",
+      "Sleeping Bag"
+    ]
+  },
+  {
+    "id": "rec7",
+    "product": "Sleeping Bag",
+    "suggestions": [
+      "Tent",
+      "Lantern"
+    ]
+  },
+  {
+    "id": "rec8",
+    "product": "Tech T-Shirt",
+    "suggestions": [
+      "Azure Socks",
+      "Microsoft Hoodie"
+    ]
+  },
+  {
+    "id": "rec9",
+    "product": "Microsoft Hoodie",
+    "suggestions": [
+      "Azure Socks",
+      "Tech T-Shirt"
+    ]
+  },
+  {
+    "id": "rec10",
+    "product": "Azure Socks",
+    "suggestions": [
+      "Tech T-Shirt",
+      "Microsoft Hoodie"
+    ]
+  },
+  {
+    "id": "rec11",
+    "product": "Xbox Series X",
+    "suggestions": [
+      "Surface Pro",
+      "Microsoft Mouse"
+    ]
+  },
+  {
+    "id": "rec12",
+    "product": "Surface Pro",
+    "suggestions": [
+      "Microsoft Mouse",
+      "Laptop Bag"
+    ]
+  },
+  {
+    "id": "rec13",
+    "product": "Microsoft Mouse",
+    "suggestions": [
+      "USB-C Hub",
+      "Surface Pro"
+    ]
+  },
+  {
+    "id": "rec14",
+    "product": "Laptop Bag",
+    "suggestions": [
+      "Wireless Charger",
+      "USB-C Hub"
+    ]
+  },
+  {
+    "id": "rec15",
+    "product": "Wireless Charger",
+    "suggestions": [
+      "Laptop Bag",
+      "USB-C Hub"
+    ]
+  },
+  {
+    "id": "rec16",
+    "product": "USB-C Hub",
+    "suggestions": [
+      "Wireless Charger",
+      "Laptop Bag"
+    ]
+  },
+  {
+    "id": "rec17",
+    "product": "Windows 11 Pro",
+    "suggestions": [
+      "Office 365",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec18",
+    "product": "Visual Studio",
+    "suggestions": [
+      "Windows 11 Pro",
+      "Office 365"
+    ]
+  },
+  {
+    "id": "rec19",
+    "product": "Office 365",
+    "suggestions": [
+      "Windows 11 Pro",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec20",
+    "product": "Azure Fundamentals",
+    "suggestions": [
+      "Power BI Guide",
+      "Microsoft 365 Handbook"
+    ]
+  },
+  {
+    "id": "rec21",
+    "product": "Power BI Guide",
+    "suggestions": [
+      "Azure Fundamentals",
+      "Microsoft 365 Handbook"
+    ]
+  },
+  {
+    "id": "rec22",
+    "product": "Microsoft 365 Handbook",
+    "suggestions": [
+      "Azure Fundamentals",
+      "Power BI Guide"
+    ]
+  },
+  {
+    "id": "rec23",
+    "product": "Graphics Card",
+    "suggestions": [
+      "SSD Drive",
+      "Router"
+    ]
+  },
+  {
+    "id": "rec24",
+    "product": "SSD Drive",
+    "suggestions": [
+      "Graphics Card",
+      "USB-C Hub"
+    ]
+  },
+  {
+    "id": "rec25",
+    "product": "Router",
+    "suggestions": [
+      "Graphics Card",
+      "SSD Drive"
+    ]
+  },
+  {
+    "id": "rec26",
+    "product": "Tech Cap",
+    "suggestions": [
+      "Tech T-Shirt",
+      "Microsoft Hoodie"
+    ]
+  },
+  {
+    "id": "rec27",
+    "product": "Tech Jacket",
+    "suggestions": [
+      "Tech T-Shirt",
+      "Azure Socks"
+    ]
+  },
+  {
+    "id": "rec28",
+    "product": "Keyboard",
+    "suggestions": [
+      "Microsoft Mouse",
+      "Mouse Pad"
+    ]
+  },
+  {
+    "id": "rec29",
+    "product": "Monitor",
+    "suggestions": [
+      "Monitor Stand",
+      "HDMI Cable"
+    ]
+  },
+  {
+    "id": "rec30",
+    "product": "Webcam",
+    "suggestions": [
+      "Monitor",
+      "Microphone"
+    ]
+  },
+  {
+    "id": "rec31",
+    "product": "VR Headset",
+    "suggestions": [
+      "Gaming Controller",
+      "Gaming Headset"
+    ]
+  },
+  {
+    "id": "rec32",
+    "product": "Smartphone",
+    "suggestions": [
+      "Smartwatch",
+      "Bluetooth Speaker"
+    ]
+  },
+  {
+    "id": "rec33",
+    "product": "Smartwatch",
+    "suggestions": [
+      "Smartphone",
+      "Wireless Charger"
+    ]
+  },
+  {
+    "id": "rec34",
+    "product": "Drone",
+    "suggestions": [
+      "Camera",
+      "Memory Card"
+    ]
+  },
+  {
+    "id": "rec35",
+    "product": "Projector",
+    "suggestions": [
+      "Bluetooth Speaker",
+      "HDMI Cable"
+    ]
+  },
+  {
+    "id": "rec36",
+    "product": "External Hard Drive",
+    "suggestions": [
+      "1TB.",
+      "USB-C Hub",
+      "Laptop Bag"
+    ]
+  },
+  {
+    "id": "rec37",
+    "product": "HDMI Cable",
+    "suggestions": [
+      "2m.",
+      "Monitor",
+      "Projector"
+    ]
+  },
+  {
+    "id": "rec38",
+    "product": "Mouse Pad",
+    "suggestions": [
+      "Keyboard",
+      "Microsoft Mouse"
+    ]
+  },
+  {
+    "id": "rec39",
+    "product": "Headphones",
+    "suggestions": [
+      "Microphone",
+      "Webcam"
+    ]
+  },
+  {
+    "id": "rec40",
+    "product": "Surge Protector",
+    "suggestions": [
+      "Router",
+      "Monitor"
+    ]
+  },
+  {
+    "id": "rec41",
+    "product": "SQL Server",
+    "suggestions": [
+      "Windows Server",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec42",
+    "product": "Azure DevOps",
+    "suggestions": [
+      "Office 365",
+      "GitHub Enterprise"
+    ]
+  },
+  {
+    "id": "rec43",
+    "product": "GitHub Enterprise",
+    "suggestions": [
+      "Azure DevOps",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec44",
+    "product": "Adobe Photoshop",
+    "suggestions": [
+      "Surface Book",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec45",
+    "product": "Antivirus Software",
+    "suggestions": [
+      "Windows 11 Pro",
+      "Office 365"
+    ]
+  },
+  {
+    "id": "rec46",
+    "product": "Windows Server",
+    "suggestions": [
+      "SQL Server",
+      "Visual Studio"
+    ]
+  },
+  {
+    "id": "rec47",
+    "product": "MS Project",
+    "suggestions": [
+      "Office 365",
+      "Windows 11 Pro"
+    ]
+  },
+  {
+    "id": "rec48",
+    "product": "C# Programming Book",
+    "suggestions": [
+      "JavaScript Guide",
+      "Python Handbook"
+    ]
+  },
+  {
+    "id": "rec49",
+    "product": "Azure Architecture",
+    "suggestions": [
+      "Azure Fundamentals",
+      "Cloud Security Basics"
+    ]
+  },
+  {
+    "id": "rec50",
+    "product": "Data Science Handbook",
+    "suggestions": [
+      "Machine Learning Guide",
+      "AI Fundamentals"
+    ]
+  },
+  {
+    "id": "rec51",
+    "product": "Machine Learning Guide",
+    "suggestions": [
+      "Data Science Handbook",
+      "AI Fundamentals"
+    ]
+  },
+  {
+    "id": "rec52",
+    "product": "Cloud Security Basics",
+    "suggestions": [
+      "Azure Fundamentals",
+      "Azure Architecture"
+    ]
+  },
+  {
+    "id": "rec53",
+    "product": "DevOps for Dummies",
+    "suggestions": [
+      "Azure DevOps",
+      "GitHub Enterprise"
+    ]
+  },
+  {
+    "id": "rec54",
+    "product": "AI Fundamentals",
+    "suggestions": [
+      "Machine Learning Guide",
+      "Data Science Handbook"
+    ]
+  },
+  {
+    "id": "rec55",
+    "product": "JavaScript Guide",
+    "suggestions": [
+      "C# Programming Book",
+      "Python Handbook"
+    ]
+  },
+  {
+    "id": "rec56",
+    "product": "Python Handbook",
+    "suggestions": [
+      "Data Science Handbook",
+      "JavaScript Guide"
+    ]
+  },
+  {
+    "id": "rec57",
+    "product": "Networking Basics",
+    "suggestions": [
+      "Azure Fundamentals",
+      "Cloud Security Basics"
+    ]
+  },
+  {
+    "id": "rec58",
+    "product": "Trail Shoes",
+    "suggestions": [
+      "Water Bottle",
+      "Headlamp"
+    ]
+  },
+  {
+    "id": "rec59",
+    "product": "Camping Stove",
+    "suggestions": [
+      "Camping Cookware",
+      "Water Bottle"
+    ]
+  },
+  {
+    "id": "rec60",
+    "product": "Hiking Poles",
+    "suggestions": [
+      "Tent",
+      "Trail Shoes"
+    ]
+  },
+  {
+    "id": "rec61",
+    "product": "Camp Chair",
+    "suggestions": [
+      "Lantern",
+      "Tent"
+    ]
+  },
+  {
+    "id": "rec62",
+    "product": "GPS Watch",
+    "suggestions": [
+      "Trail Shoes",
+      "Headlamp"
+    ]
+  },
+  {
+    "id": "rec63",
+    "product": "Hammock",
+    "suggestions": [
+      "Sleeping Bag",
+      "Lantern"
+    ]
+  },
+  {
+    "id": "rec64",
+    "product": "Binoculars",
+    "suggestions": [
+      "Lantern",
+      "Trail Shoes"
+    ]
+  },
+  {
+    "id": "rec65",
+    "product": "Tent (2-person)",
+    "suggestions": [
+      "Sleeping Bag",
+      "Camp Chair"
+    ]
+  },
+  {
+    "id": "rec66",
+    "product": "Camping Cookware",
+    "suggestions": [
+      "Camping Stove",
+      "Water Bottle"
+    ]
+  },
+  {
+    "id": "rec67",
+    "product": "Trail Jacket",
+    "suggestions": [
+      "Hiking Backpack",
+      "Trail Shoes"
+    ]
+  },
+  {
+    "id": "rec68",
+    "product": "Solar Charger",
+    "suggestions": [
+      "Camping Stove",
+      "Lantern"
+    ]
+  },
+  {
+    "id": "rec69",
+    "product": "Water Filter",
+    "suggestions": [
+      "Water Bottle",
+      "Camping Cookware"
+    ]
+  },
+  {
+    "id": "rec70",
+    "product": "Gaming Controller",
+    "suggestions": [
+      "Xbox Series X",
+      "Gaming Headset"
+    ]
+  },
+  {
+    "id": "rec71",
+    "product": "Gaming Headset",
+    "suggestions": [
+      "Gaming Controller",
+      "VR Headset"
+    ]
+  },
+  {
+    "id": "rec72",
+    "product": "Wi-Fi Extender",
+    "suggestions": [
+      "Router",
+      "Ethernet Cable"
+    ]
+  },
+  {
+    "id": "rec73",
+    "product": "Memory Card",
+    "suggestions": [
+      "Camera",
+      "USB-C Hub"
+    ]
+  },
+  {
+    "id": "rec74",
+    "product": "Camera",
+    "suggestions": [
+      "Tripod",
+      "Memory Card"
+    ]
+  },
+  {
+    "id": "rec75",
+    "product": "Tripod",
+    "suggestions": [
+      "Camera",
+      "Binoculars"
+    ]
+  },
+  {
+    "id": "rec76",
+    "product": "Microphone",
+    "suggestions": [
+      "Webcam",
+      "Headphones"
+    ]
+  },
+  {
+    "id": "rec77",
+    "product": "Smart Thermostat",
+    "suggestions": [
+      "Router",
+      "Smartphone"
+    ]
+  },
+  {
+    "id": "rec78",
+    "product": "3D Printer",
+    "suggestions": [
+      "USB-C Hub",
+      "VR Headset"
+    ]
+  },
+  {
+    "id": "rec79",
+    "product": "USB Cable",
+    "suggestions": [
+      "1m length.",
+      "External Hard Drive",
+      "USB-C Hub"
+    ]
+  },
+  {
+    "id": "rec80",
+    "product": "Ethernet Cable",
+    "suggestions": [
+      "2m length.",
+      "Router",
+      "Wi-Fi Extender"
+    ]
+  },
+  {
+    "id": "rec81",
+    "product": "Monitor Stand",
+    "suggestions": [
+      "Monitor",
+      "Desk Lamp"
+    ]
+  },
+  {
+    "id": "rec82",
+    "product": "Desk Lamp",
+    "suggestions": [
+      "Monitor Stand",
+      "Surge Protector"
+    ]
+  },
+  {
+    "id": "rec83",
+    "product": "Tablet",
+    "suggestions": [
+      "Smartphone",
+      "Wireless Charger"
+    ]
+  },
+  {
+    "id": "rec84",
+    "product": "Smart Glasses",
+    "suggestions": [
+      "Smartphone",
+      "VR Headset"
+    ]
+  },
+  {
+    "id": "rec85",
+    "product": "Raspberry Pi",
+    "suggestions": [
+      "Arduino Kit",
+      "HDMI Cable"
+    ]
+  },
+  {
+    "id": "rec86",
+    "product": "Arduino Kit",
+    "suggestions": [
+      "Raspberry Pi",
+      "Python Handbook"
+    ]
+  },
+  {
+    "id": "rec87",
+    "product": "Gaming Keyboard",
+    "suggestions": [
+      "Gaming Mouse",
+      "Gaming Headset"
+    ]
+  },
+  {
+    "id": "rec88",
+    "product": "Gaming Mouse",
+    "suggestions": [
+      "Gaming Keyboard",
+      "Gaming Headset"
+    ]
+  },
+  {
+    "id": "rec89",
+    "product": "Surface Laptop",
+    "suggestions": [
+      "Surface Book",
+      "Windows 11 Pro"
+    ]
+  },
+  {
+    "id": "rec90",
+    "product": "Surface Book",
+    "suggestions": [
+      "Surface Laptop",
+      "Adobe Photoshop"
+    ]
+  },
+  {
+    "id": "rec91",
+    "product": "UltraWide Monitor",
+    "suggestions": [
+      "Monitor Stand",
+      "HDMI Cable"
+    ]
+  },
+  {
+    "id": "rec92",
+    "product": "4K Monitor",
+    "suggestions": [
+      "Monitor Stand",
+      "HDMI Cable"
+    ]
+  },
+  {
+    "id": "rec93",
+    "product": "Power Supply",
+    "suggestions": [
+      "Motherboard",
+      "Graphics Card"
+    ]
+  },
+  {
+    "id": "rec94",
+    "product": "CPU",
+    "suggestions": [
+      "Motherboard",
+      "RAM"
+    ]
+  },
+  {
+    "id": "rec95",
+    "product": "Motherboard",
+    "suggestions": [
+      "CPU",
+      "RAM"
+    ]
+  },
+  {
+    "id": "rec96",
+    "product": "RAM",
+    "suggestions": [
+      "Motherboard",
+      "Graphics Card"
+    ]
+  },
+  {
+    "id": "rec97",
+    "product": "Gaming PC",
+    "suggestions": [
+      "Graphics Card",
+      "Gaming Keyboard"
+    ]
+  },
+  {
+    "id": "rec98",
+    "product": "Cloud Subscription",
+    "suggestions": [
+      "Office 365",
+      "Azure DevOps"
+    ]
+  },
+  {
+    "id": "rec99",
+    "product": "DevOps Toolkit",
+    "suggestions": [
+      "Azure DevOps",
+      "GitHub Enterprise"
+    ]
+  },
+  {
+    "id": "rec100",
+    "product": "VR Gloves",
+    "suggestions": [
+      "VR Headset",
+      "Gaming PC"
+    ]
+  }
+]
