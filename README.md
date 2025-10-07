@@ -46,7 +46,8 @@ This hackathon demonstrates the complete journey from raw data to intelligent AI
 | **11:30 AM - 12:00 PM** | Break & Networking | - | Team collaboration |
 | **12:00 PM - 2:00 PM** | **F02 Challenge** | Data Engineering | Medallion architecture pipeline |
 | **2:00 PM - 3:00 PM** | Lunch Break | - | Recharge & discussions |
-| **3:00 PM - 4:30 PM** | **F02 Continued** | Advanced Modeling | Semantic layers & Power BI |
+| **2:00 PM - 3:30 PM** | **F03 Challenge** | Data Modeling | Semantic layers & dimensional design |
+| **3:30 PM - 4:30 PM** | **F04 Bonus Challenge** | Real-time Analytics | Advanced streaming & KQL |
 | **4:30 PM - 5:00 PM** | Day 1 Wrap-up | - | Prepare for Day 2 |
 
 ### 🗓️ Day 2: AI Application Development
@@ -57,8 +58,9 @@ This hackathon demonstrates the complete journey from raw data to intelligent AI
 | **9:00 AM - 9:30 AM** | Day 2 Kickoff | - | AI strategy overview |
 | **9:30 AM - 12:00 PM** | **AI01 Challenge** | RAG ChatBot | Conversational AI with custom data |
 | **12:00 PM - 1:00 PM** | Lunch Break | - | Mid-event networking |
-| **1:00 PM - 3:30 PM** | **AI02 Challenge** | Intelligent Agent | Database-connected AI agents |
-| **3:30 PM - 4:00 PM** | **AI03 Preview** | Future Challenge | Advanced AI patterns |
+| **12:00 PM - 2:00 PM** | **AI02 Challenge** | Intelligent Agent | Database-connected AI agents |
+| **2:00 PM - 3:30 PM** | **AI03 Challenge** | Multi-Agent System | Enterprise agent orchestration |
+| **3:30 PM - 4:00 PM** | Integration & Testing | - | End-to-end solution validation |
 | **4:00 PM - 4:30 PM** | Final Presentations | - | Show your achievements |
 | **4:30 PM - 5:00 PM** | Closing & Awards | - | Celebrate success |
 
@@ -74,12 +76,41 @@ HackathonOct25/
 ├── 🗓️ DAY 1: MICROSOFT FABRIC CHALLENGES
 ├── F01 - Fabric Configuration/                 # ⚙️ Foundation setup
 │   ├── README.md                              # Comprehensive challenge guide
-│   ├── 01-challenge.md                        # Original challenge document
-│   └── 01-solution.md                         # Detailed solution walkthrough
+│   ├── challenge.md                        # Original challenge document
+│   └── solution.md                         # Detailed solution walkthrough
 │
 ├── F02 - Data Engineering/                     # 🔄 Data pipeline creation
 │   ├── README.md                              # Complete engineering guide
 │   └── challange.md                           # Original challenge specification
+│   └── solution.md                         # Detailed solution walkthrough
+│
+├── F03 - Data Modeling/                     # 🔄 Data model creation
+│   ├── README.md                              # Complete engineering guide
+│   └── challange.md                           # Original challenge specification
+│   └── solution.md                         # Detailed solution walkthrough
+│
+├── F04 - Bonus Challange - Realtime Analytics/                     # 🔄 Realtime Analytics Solution
+│   ├── README.md                              # Complete engineering guide
+│   └── Assets
+│   │   ├── Image files                   # guide images
+│   └── dashboards/RTA dashboard
+│   │   ├── KQL and JSON files                   # dashboard files
+│   └── Docs
+│   │   ├── additional workshop guides                 # workshop.md
+│   └── drawings
+│   │   ├── Excalidraw files                   # diagram files
+│   └── kql
+│   │   ├── sample kql files                   # diagram files
+│   └── notebooks
+│   │   ├── sample notebook files                   # diagram files
+│   └── sql
+│   │   ├── sample sql files                   # diagram files
+│   ├── CODE_OF_CONDUCT.md                        
+│   ├── LICENSE                             
+│   ├── Security.md                           
+│   ├── requirements.md                     
+│
+│
 │
 ├── 🗓️ DAY 2: AI APPLICATION CHALLENGES  
 ├── AI_Challenges/                              # 🤖 AI development workspace
@@ -127,6 +158,7 @@ HackathonOct25/
 **Day 1 Participants:**
 - Start with `F01 - Fabric Configuration/README.md`
 - Progress to `F02 - Data Engineering/README.md`
+- Progress to F03 - Data Modeling/README.md
 - Use `Architecture/` for reference diagrams
 
 **Day 2 Participants:**
@@ -314,7 +346,7 @@ graph TB
 
 ---
 
-#### 🔄 F02 - Data Engineering (2-3 hours)
+#### 🔄 F02 - Data Engineering & F03 - Data Modeling(2-3 hours)
 **Medallion Architecture Implementation**
 
 **What You'll Build:**
@@ -367,16 +399,20 @@ graph TB
 
 ---
 
-#### 🚀 AI03 - Advanced Patterns (Preview)
-**Future Challenge Concepts**
+#### � AI03 - Multi-Agent System (2-3 hours)
+**Enterprise Agent Orchestration**
 
-**What's Planned:**
-- Multi-agent systems and cooperation
-- Advanced reasoning patterns
-- Production deployment strategies
-- Integration with Fabric real-time analytics
+**What You'll Build:**
+- Multi-agent orchestration platform
+- Specialized agent fleet (Coordinator, Analyst, Customer Service, Security)
+- Agent-to-agent communication via Azure Service Bus
+- Enterprise-grade architecture with comprehensive Microsoft integration
 
-**Status:** Framework defined, full challenge in development
+**Key Skills:** Multi-agent systems, microservices architecture, event-driven design, enterprise integration
+
+**Prerequisites:** AI01 and AI02 completed, understanding of distributed systems and messaging
+
+**Success Criteria:** Functional multi-agent system with coordinated specialist agents handling complex business scenarios
 
 ## 🎯 Learning Paths
 
@@ -418,10 +454,13 @@ Best For: Business analysts, BI developers, citizen developers
 
 **Challenge Completion Badges:**
 - 🏗️ **Fabric Foundation** - F01 completed
-- 🔄 **Data Engineering** - F02 completed  
+- 🔄 **Data Engineering** - F02 completed
+- � **Data Modeling Expert** - F03 completed
+- ⚡ **Real-time Analytics** - F04 completed
 - 🤖 **AI Application Builder** - AI01 completed
 - 🧠 **Intelligent Agent Developer** - AI02 completed
-- 🚀 **Full Stack AI** - All challenges completed
+- 🔥 **Multi-Agent Architect** - AI03 completed
+- 🚀 **Full Stack AI Master** - All challenges completed
 
 **Special Recognition:**
 - **Innovation Award** - Most creative implementation
@@ -547,7 +586,7 @@ Quick Fix:
 - **Complete Prerequisites** - Follow [`Prerequisites.md`](Prerequisites.md) setup checklist
 - **Validate Environment** - Test all Azure services and development tools
 - **Review Architecture** - Study the comprehensive diagrams in [`AI_Challenges/README.md`](AI_Challenges/README.md)
-- **Understand Licensing** - Review [`LICENSE`](LICENSE) and [`LICENSE_DOCS`](LICENSE_DOCS) for usage rights
+- **Understand Licensing** - Review [`LICENSE`](LICENSE) (MIT) and [`LICENSE_DOCS`](LICENSE_DOCS) (CC Attribution 4.0) for complete usage rights
 
 #### **Day 1 Success Strategies:**
 - **Start Simple** - Focus on getting basic pipeline working first

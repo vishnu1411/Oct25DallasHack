@@ -7,12 +7,12 @@ Welcome to the Azure Fabric Hackathon! In this challenge, participants will work
 
 In this challenge, you will:  
 
-✅ Use two JSON data sources for source data.  One uploaded directly to Fabric, and the other in a NoSQL instance.
-✅ Set up an Upload JSON to Fabric
-✅ Create a CosmosDB instance and upload JSON to COSMOSDB
-✅ Move the data through a Medallion Data Architecture to a Silver staging layer for use in Challenge 3
-✅ Assign permissions 
-✅ Produce a CSV version of the JSON file for use with the AI workshop in day 2 
+✅ Use two JSON data sources for source data.  One uploaded directly to Fabric, and the other in a NoSQL instance.  
+✅ Set up an Upload JSON to Fabric  
+✅ Create a CosmosDB instance and upload JSON to COSMOSDB  
+✅ Move the data through a Medallion Data Architecture to a Silver staging layer for use in Challenge 3  
+✅ Assign permissions   
+✅ Produce a CSV version of the JSON file for use with the AI workshop in day 2   
 
 
 ---
