@@ -98,9 +98,16 @@ We decided to use **OpenAI function calling** within the Foundry agent to query 
 - Name the function (e.g., “GetRecommendations”) and set Authorization to Anonymous (so our bot can call it easily).
 - VS Code will scaffold a project with a subfolder (e.g., GetRecommendations) containing __init__.py and function.json if it follows the old way ,and if it is the new method ,then it will be just a sample functions_app.py file only 
 If using function APP V1 (Legacy Style) below will be the folder structure
+
 ![FunAPP V1 Dir Structure](<Reference Pictures/Funcapp_Folder_Struc.png>)
 
+
+
+
+
 If using function APP V2 (Modern Decorator-Based) below will be the folder structure
+
+
  ![FunAPP V2 Dir Structure](<Reference Pictures/functionapp_v2_directory_structure.png>)
 
 

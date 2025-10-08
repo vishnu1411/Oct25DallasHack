@@ -75,17 +75,14 @@ HackathonOct25/
 │
 ├── 🗓️ DAY 1: MICROSOFT FABRIC CHALLENGES
 ├── F01 - Fabric Configuration/                 # ⚙️ Foundation setup
-│   ├── README.md                              # Comprehensive challenge guide
 │   ├── challenge.md                        # Original challenge document
 │   └── solution.md                         # Detailed solution walkthrough
 │
 ├── F02 - Data Engineering/                     # 🔄 Data pipeline creation
-│   ├── README.md                              # Complete engineering guide
 │   └── challange.md                           # Original challenge specification
 │   └── solution.md                         # Detailed solution walkthrough
 │
 ├── F03 - Data Modeling/                     # 🔄 Data model creation
-│   ├── README.md                              # Complete engineering guide
 │   └── challange.md                           # Original challenge specification
 │   └── solution.md                         # Detailed solution walkthrough
 │
@@ -156,9 +153,9 @@ HackathonOct25/
 ### 📁 Folder Usage Guide
 
 **Day 1 Participants:**
-- Start with `F01 - Fabric Configuration/README.md`
-- Progress to `F02 - Data Engineering/README.md`
-- Progress to F03 - Data Modeling/README.md
+- Start with `F01 - Fabric Configuration/01-challenge.md`
+- Progress to `F02 - Data Engineering/challange.md`
+- Progress to F03 - Data Modeling/challange.md
 - Use `Architecture/` for reference diagrams
 
 **Day 2 Participants:**

@@ -47,7 +47,7 @@ In this challenge, you will:
    - **Region**:
 5) Select **Review + Create**.
 
-![Create Resource Group](image.png)
+![Create Resource Group](<Reference Pictures/1.png>)
 
 ---
 
