@@ -1,5 +1,5 @@
 
-# 🏆 Challenge 02: Intelligent Agent with Azure Cosmos DB (Recommendations)
+# 🏆AI Challenge 02: Intelligent Agent with Azure Cosmos DB (Recommendations)
 
 ## 📖 Learning Objectives 
 In this challenge, you will extend your AI agent’s capabilities by integrating it with an external database. Specifically, you’ll use **Azure Cosmos DB** to provide dynamic, data-driven responses (like product recommendations). By the end, you will know how to:  
@@ -28,10 +28,13 @@ Key tasks:
 
 Milestones:
 
-### Milestone #1: **Prepare Azure Cosmos DB with Recommendation Data**  
-1. **Create** an Azure Cosmos DB account (NoSQL API) in your resource group (e.g., “contoso-cosmos”). If you already have one, you can use it. Choose the same region as before for consistency.  
-2. **Create** a Database (e.g., `RetailData`) and a Container (e.g., `Recommendations`) within the Cosmos DB account. Set a partition key (e.g., `/productId` or `/product`). Throughput: for hackathon, a small fixed throughput (like 400 RU/s) or the new serverless option is fine.  
-3. **Insert recommendation data from CSV** into the container. Instead of manually entering sample documents, you can use your CSV file (`tailwind_traders_challenge2_data.csv`) located one folder outside your current directory. This file should contain product relationships, such as which products are frequently bought together.
+## 🚀 Milestone #1: **Prepare Azure Cosmos DB with Recommendation Data**  
+
+### 1️⃣ **Create** an Azure Cosmos DB account (NoSQL API) in your resource group (e.g., "contoso-cosmos"). If you already have one, you can use it. Choose the same region as before for consistency.  
+
+### 2️⃣ **Create** a Database (e.g., `RetailData`) and a Container (e.g., `Recommendations`) within the Cosmos DB account. Set a partition key (e.g., `/productId` or `/product`). Throughput: for hackathon, a small fixed throughput (like 400 RU/s) or the new serverless option is fine.  
+
+### 3️⃣ **Insert recommendation data from CSV** into the container. Instead of manually entering sample documents, you can use your CSV file (`tailwind_traders_challenge2_data.csv`) located one folder outside your current directory. This file should contain product relationships, such as which products are frequently bought together.
 
 ### Importing Data from CSV
 
@@ -40,35 +43,48 @@ Milestones:
 
 ```python
 import csv, json
-input_csv = 'tailwind_traders_challange2_data.csv'
-documents = []
-with open(input_csv, newline='') as csvfile:
-    reader = csv.DictReader(csvfile)
+
+docs = []
+with open('tailwind_traders_challange2_data.csv', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
     for idx, row in enumerate(reader, start=1):
+        # Clean non-breaking spaces and strip whitespace
+        product = row["Product"].replace('\u00a0', ' ').strip()
+        suggestions = [
+            row["AlsoBought1"].replace('\u00a0', ' ').strip(),
+            row["AlsoBought2"].replace('\u00a0', ' ').strip(),
+            row["AlsoBought3"].replace('\u00a0', ' ').strip()
+        ]
+        # Remove empty suggestions
+        suggestions = [s for s in suggestions if s]
         doc = {
             "id": f"rec{idx}",
-            "product": row["ProductName"],
-            "suggestions": [s.strip() for s in row["AlsoBought1"].split(",") if s]
+            "product": product,
+            "suggestions": suggestions
         }
-        documents.append(doc)
-with open('recommendations.json', 'w') as outfile:
-    json.dump(documents, outfile, indent=2)
+        docs.append(doc)
+
+with open('recommendations.json', 'w', encoding='utf-8') as out:
+    json.dump(docs, out, indent=2, ensure_ascii=False)
 ``` 
 
-Upload the resulting JSON documents to the Cosmos DB container (use the Data Explorer’s Upload Items or an SDK/script) so that each product has a corresponding document with its suggestions.
-4️⃣ Verify Data in Cosmos DB
+Upload the resulting JSON documents to the Cosmos DB container (use the Data Explorer's Upload Items or an SDK/script) so that each product has a corresponding document with its suggestions.
+
+### 4️⃣ Verify Data in Cosmos DB
 In Data Explorer, run a query like SELECT * FROM c on the Recommendations container. You should see the inserted documents. Verify that each document contains the expected product name and suggestions array. This ensures your Cosmos DB is correctly populated with recommendation data before moving on.
 
-🚀 Milestone #2: Integrate Cosmos DB with Azure AI Foundry
-1️⃣ Enable Managed Identity and Assign Roles
+## 🚀 Milestone #2: Integrate Cosmos DB with Azure AI Foundry
+
+### 1️⃣ Enable Managed Identity and Assign Roles
 Enable Managed Identity on your Azure AI Services resource (the one hosting your OpenAI model) and on the Azure Cosmos DB account (via the Azure Portal’s Identity blade for each). Then assign the necessary RBAC roles:
 
 In the Cosmos DB account IAM, assign Cosmos DB Account Reader (or Contributor) to the AI Services managed identity, so it can read data.
 In the Cosmos DB IAM, also assign Cosmos DB Data Reader or Cosmos DB Built-in Data Contributor to the AI Service identity for data access (use the appropriate Data role for NoSQL).
 In the Azure AI Services resource IAM, assign Cognitive Services OpenAI Contributor to the Cosmos DB managed identity (if you enabled MI on Cosmos) or ensure your user has Owner/Contributor access as needed.
 
-These steps allow the Foundry project (which uses the AI Service’s identity under the hood) to access Cosmos DB securely without needing keys.
-2️⃣ Deploy an Azure Function for Recommendations
+These steps allow the Foundry project (which uses the AI Service's identity under the hood) to access Cosmos DB securely without needing keys.
+
+### 2️⃣ Deploy an Azure Function for Recommendations
 To let the chat agent query Cosmos DB, implement a simple API that the agent can call. One approach is using Azure Functions. Create an HTTP-triggered Azure Function (in Python or C#) that accepts a product name and returns suggested products from Cosmos DB. For example, in Python:
 
 ```python
@@ -100,8 +116,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     )
 ``` 
 
-Deploy this function (e.g., via Azure Functions Core Tools or VS Code) and note its URL (e.g., https://<functionapp>.azurewebsites.net/api/GetRecommendations). Set up environment variables (COSMOS_URI, COSMOS_KEY) for the function or use Azure Managed Identity within the function to access Cosmos (which would require adding a Managed Identity to the function and granting it Cosmos DB Data Reader role).
-3️⃣ Register the Function in Azure AI Foundry
+Deploy this function (e.g., via Azure Functions Core Tools or VS Code) and note its URL (e.g., https://functionapp.azurewebsites.net/api/GetRecommendations). Set up environment variables (COSMOS_URI, COSMOS_KEY) for the function or use Azure Managed Identity within the function to access Cosmos (which would require adding a Managed Identity to the function and granting it Cosmos DB Data Reader role).
+
+### 3️⃣ Register the Function in Azure AI Foundry
 In Azure AI Studio (your Foundry project), integrate this API as a function the agent can call. In the Prompt Flow or Agent configuration, you can use OpenAI’s function calling. For example, define a function schema like:
 
 ```json
@@ -144,42 +161,41 @@ In Azure AI Studio (your Foundry project), integrate this API as a function the 
 
 ## 🚀 Milestone #3: Implement Agent Recommendation Logic
 
-1. **Trigger Recommendations on Relevant Queries**  
+### 1️⃣ **Trigger Recommendations on Relevant Queries**  
     Configure the agent to detect when a user is seeking product recommendations. Use simple keyword matching (e.g., “recommend”, “anything else with”, “also buy”) in the user’s input to trigger the Cosmos DB function. In Azure AI Foundry, this can be implemented as a condition or classifier within your prompt flow. For production, consider more advanced intent detection, but for this challenge, keyword checks are sufficient.
 
-2. **Incorporate Suggestions in Responses**  
+### 2️⃣ **Incorporate Suggestions in Responses**  
     When the agent receives recommended products from Cosmos DB, format the reply to clearly present them. For example:  
     > Customers who bought **Tent** often also buy **Sleeping Bag**, **Lantern**, and **Camping Stove**.  
     Use a consistent answer template and ensure the suggestions are included in the agent’s response. If using prompt flow, store the suggestions in a variable and append them to the assistant’s answer.
 
-3. **Provide a Safe Fallback for No Data**  
+### 3️⃣ **Provide a Safe Fallback for No Data**  
     If no recommendations are found (the suggestions list is empty), the agent should avoid guessing or hallucinating. Instead, respond with a general helpful statement or acknowledge the lack of specific recommendations. For example:  
     > I don’t have specific recommendations for that item, but you might consider accessories related to it.  
     This approach maintains factual accuracy and user trust.
 
-    ## 🚀 Milestone #4: Test the Enhanced Agent
+## 🚀 Milestone #4: Test the Enhanced Agent
 
-    1. **Ask a Direct Recommendation Question**  
+### 1️⃣ **Ask a Direct Recommendation Question**  
         Example: “I bought a Tent. What else should I get?”  
         - The chatbot should recognize the intent, call the Cosmos DB function, and respond with relevant product suggestions (e.g., “Sleeping Bag and Lantern”) based on the data for “Tent”.
 
-    2. **Ask an Implicit Recommendation Question**  
+### 2️⃣ **Ask an Implicit Recommendation Question**  
         Example: “Do I need anything in addition to the Headlamp?”  
         - The agent should interpret this as a request for related items and provide suggestions (e.g., “You might also consider Running Shoes and a Hiking Backpack with your Headlamp.”).  
         - If not, adjust your keyword triggers or function-calling logic.
 
-    3. **Ask a Non-Recommendation Question**  
+### 3️⃣ **Ask a Non-Recommendation Question**  
         Example: “What is the price of the Tent?”  
         - The bot should answer using its knowledge sources and not trigger the Cosmos DB function.  
         - Ensure regular Q&A works as expected.
 
-    4. **Test a “No Data” Scenario**  
-        Example: “I just bought a Solar Charger. What else do I need?”  
-        - If “Solar Charger” is not in your Cosmos DB container, the function may return an empty list.  
-        - The agent should use the fallback response (from Milestone #3) and avoid guessing, providing a generic helpful suggestion or politely stating no specific recommendations.
+### 4️⃣ **Test a "No Data" Scenario**  
+Example: "I just bought a Solar Charger. What else do I need?"  
+- If "Solar Charger" is not in your Cosmos DB container, the function may return an empty list.  
+- The agent should use the fallback response (from Milestone #3) and avoid guessing, providing a generic helpful suggestion or politely stating no specific recommendations.
 
-    5. **Verify Function Calls and Logs**  
-        - Optionally, review Azure Function logs or Foundry traces to confirm the GetRecommendations function is called for recommendation queries and not for unrelated questions.
+### 5️⃣ **Verify Function Calls and Logs**  
+- Optionally, review Azure Function logs or Foundry traces to confirm the GetRecommendations function is called for recommendation queries and not for unrelated questions.
 
     By completing these tests, you’ll confirm that your agent uses live Cosmos DB data to deliver fresh, relevant recommendations. 🎉
-

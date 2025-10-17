@@ -59,7 +59,7 @@ This hackathon demonstrates the complete journey from raw data to intelligent AI
 | **9:30 AM - 12:00 PM** | **AI01 Challenge** | RAG ChatBot | Conversational AI with custom data |
 | **12:00 PM - 1:00 PM** | Lunch Break | - | Mid-event networking |
 | **12:00 PM - 2:00 PM** | **AI02 Challenge** | Intelligent Agent | Database-connected AI agents |
-| **2:00 PM - 3:30 PM** | **AI03 Challenge** | Multi-Agent System | Enterprise agent orchestration |
+| **2:00 PM - 3:30 PM** | **AI03 Challenge** | Multi-Agent System | Advanced multi-agent orchestration |
 | **3:30 PM - 4:00 PM** | Integration & Testing | - | End-to-end solution validation |
 | **4:00 PM - 4:30 PM** | Final Presentations | - | Show your achievements |
 | **4:30 PM - 5:00 PM** | Closing & Awards | - | Celebrate success |
@@ -127,6 +127,9 @@ HackathonOct25/
 │   │   │       ├── __init__.py                # Function implementation
 │   │   │       └── function.json              # Function configuration
 │   │   └── Reference Pictures/                # Architecture diagrams
+│   ├── AI03-Multi_Agent/                      # 🔥 Advanced multi-agent system
+│   │   ├── 03-challenge.md                    # Multi-agent challenge guide
+│   │   └── 03-solution.md                     # 5-milestone implementation approach
 │   ├── AI_Scripts/                            # 🛠️ Helper utilities
 │   │   ├── csv_json_chal02.py                 # Data conversion scripts
 │   │   ├── csv_json_flat_productname.py       # Flattening utilities
@@ -396,20 +399,28 @@ graph TB
 
 ---
 
-#### � AI03 - Multi-Agent System (2-3 hours)
-**Enterprise Agent Orchestration**
+#### 🔥 AI03 - Multi-Agent System (3-4 hours)
+**Advanced Multi-Agent AI System**
 
 **What You'll Build:**
-- Multi-agent orchestration platform
-- Specialized agent fleet (Coordinator, Analyst, Customer Service, Security)
-- Agent-to-agent communication via Azure Service Bus
-- Enterprise-grade architecture with comprehensive Microsoft integration
+- **5 Specialized AI Agents** working in harmony (Intent Detector, Inventory, Alternatives, Recommendations, Response Formatter)
+- **Advanced Conversation Memory** that persists across sessions
+- **Smart Context Switching** with confirmatory response handling
+- **Production-ready VS Code terminal application** with comprehensive testing
+- **Beautiful Console Interface** with rich formatting and analytics
 
-**Key Skills:** Multi-agent systems, microservices architecture, event-driven design, enterprise integration
+**Challenge Structure** (5 Milestones):
+1. **Project Setup and Configuration** - Agent architecture design and Azure service integration
+2. **Multi-Agent System Implementation** - Core orchestration system development
+3. **Test Implementation & Unit Testing** - Comprehensive testing of agent interactions
+4. **Production Application Testing** - VS Code terminal testing and validation
+5. **Enhanced Features & Production Readiness** - Advanced features and enterprise capabilities
 
-**Prerequisites:** AI01 and AI02 completed, understanding of distributed systems and messaging
+**Key Skills:** Multi-agent orchestration, conversation memory, production testing, enterprise AI patterns
 
-**Success Criteria:** Functional multi-agent system with coordinated specialist agents handling complex business scenarios
+**Prerequisites:** AI01 and AI02 completed, Python 3.12, understanding of agent frameworks
+
+**Success Criteria:** Production-ready multi-agent system with natural conversation flow, memory persistence, and comprehensive testing validation
 
 ## 🎯 Learning Paths
 

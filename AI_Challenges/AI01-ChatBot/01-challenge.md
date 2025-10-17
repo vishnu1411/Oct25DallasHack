@@ -1,4 +1,4 @@
-# 🏆 Challenge 04: Setting Up LLMs for a Chatbot and its Dependencies
+# 🏆 AI Challenge 01: Setting Up LLMs for a Chatbot and its Dependencies
 
 ## 📖 Learning Objectives
 Retrieval Augmented Generation (RAG) is a technique used to **build chat-based applications** that leverage custom data to generate more **factual, relevant** responses. Instead of relying solely on a model’s pre-training, RAG retrieves **grounding data** from your own data store (for example, Azure AI Search) and **augments** the prompt with that data. In this challenge, you’ll use **Azure AI Foundry** to orchestrate these steps.
@@ -40,7 +40,7 @@ Milestones High Level :
 ### Milestone #1: **Create, Define, and Explore** LLMs + Resources
 1. **Create** your Resource Group, Key Vault, Azure Storage, Azure AI Service, and Azure AI Search.
 2. **Set up** an AI Foundry **Hub** and **Project**.
-3. **Deploy** two models: an **embedding** model (e.g., `text-embedding-ada-002`) and a **chat** model (e.g., `gpt-35-turbo-16k`).
+3. **Deploy** two models: an **embedding** model (e.g., `text-embedding-ada-002`) and a **chat** model (e.g., `gpt-35-turbo`).
 4. **Test** your chatbot in the **playground** with simple questions.
 
 ### Milestone #2: **Add Data** to Your Project and **Ground** the Chatbot
@@ -56,7 +56,7 @@ Milestones High Level :
 4. **Test** multi-turn Q&A that references your data.
 
 ### Milestone #4: **Advanced** – Query Multiple CSV Files with Langchain + Azure OpenAI
-1. **Create** or verify your **Azure OpenAI** resource for `gpt-35-turbo-instruct`.
+1. **Create** or verify your **Azure OpenAI** resource for `gpt-35-turbo`.
 2. **Combine** multiple CSVs into one local CSV (or manage them individually).
 3. **Use** `create_csv_agent` in Python to ask structured queries in plain English.
 4. **Achieve** more complex or SQL-like queries without memorizing syntax.
@@ -78,7 +78,7 @@ Milestones High Level :
   - North Central US
   - Sweden Central
   - Switzerland
-- Check the TPM quota for your subscription for the LLMs `text-embedding-ada-002` and `gpt-35-turbo-16k` and `gpt-35-turbo-instruct`. If you are already familiar with the same, request a quota addition if the current quota is in the 2-digit range (10k–90k) and increase it to whatever is maximum for each model.
+- Check the TPM quota for your subscription for the LLMs `text-embedding-ada-002` and `gpt-35-turbo` and `gpt-35-turbo-instruct`. If you are already familiar with the same, request a quota addition if the current quota is in the 2-digit range (10k–90k) and increase it to whatever is maximum for each model.
 
 ---
 
@@ -114,10 +114,10 @@ For ease of data transfer we have the same copied under the path "Data Sources/c
 
 You need two models:
 - **An embedding model** (text-embedding-ada-002)
-- **A generative model** (like gpt-35-turbo-16k)
+- **A generative model** (like gpt-35-turbo)
 
-1) In **Azure AI Foundry**, open your **project** → **My assets** → **Models + endpoints**.
-2) **New deployment** of `text-embedding-ada-002` (click **Customize**):
+1. In **Azure AI Foundry**, open your **project** → **My assets** → **Models + endpoints**.
+2. **New deployment** of `text-embedding-ada-002` (click **Customize**):
    - **Deployment name**: `text-embedding-ada-002`
    - **Type**: Standard
    - **Model version**: default
@@ -125,33 +125,35 @@ You need two models:
    - **Tokens per Minute**: max
    - **Content filter**: DefaultV2
    - **Enable dynamic quota**: optional  
-   > If insufficient quota, you’ll be asked to choose a different location; a new AI resource will be created.
+   > If insufficient quota, you'll be asked to choose a different location; a new AI resource will be created.
 
-3) **Repeat** the deployment for `gpt-35-turbo-16k` under the name `gpt-35-turbo-16k`.
-4) **Select** `gpt-35-turbo-16k` → **Open in playground**.
-5) Test with “What do you do?” to see the default response.
-6) **Now change** instructions/context:
+3. **Repeat** the deployment for `gpt-35-turbo` under the name `gpt-35-turbo`.
+4. **Select** `gpt-35-turbo` → **Open in playground**.
+5. Test with "What do you do?" to see the default response.
+6. **Now change** instructions/context:
 
-![Model Instructions](https://github.com/DavidArayaS/AI-Powered-Insights-Fraud-Detection-Hackathon/blob/7b4a95aa515d6cea3bffc4253b32ac0981bb527a/04-AI%20Chatbot/Reference%20Pictures/model9.png)
+![Model Instructions](<Reference Pictures/model9.png>)
 
-**Objective**: Provide financial advice as a knowledgeable advisor.
+**Objective**: Provide Retails advice as a custom knowledgeable advisor.
 
 **Capabilities**:
-- Market trends, investment options, financial products
-- Personalized advice (risk tolerance, financial goals)
-- Budgeting, saving, risk management tips
-- Financial planning: retirement, tax strategies, wealth management
-- Answers to common financial Qs, solutions to issues
+- Analyze and discuss customer purchase history and transaction details  
+- Recommend products and offers based on loyalty tier, preferences, and past purchases  
+- Provide insights on loyalty program benefits and tier upgrades  
+- Answer questions about previous orders, returns, and account activity  
+- Suggest personalized deals, bundles, and shopping tips  
+- Help with budgeting, saving, and maximizing rewards  
+- Address common retail issues (order status, payment, delivery, etc.)  
 
 **Instructions**:
-1) Engage as a friendly, professional financial advisor
-2) Use resources for accurate info
-3) Tailor responses to specific needs
-4) Be practical and consider safety
-5) Encourage follow-up questions
+1. Engage as a friendly, knowledgeable retail advisor.
+2. Use customer profile, transaction history, and loyalty data to provide accurate recommendations.
+3. Tailor responses to each customer's preferences, loyalty tier, and shopping behavior.
+4. Be practical, prioritize safety, and respect customer privacy at all times.
+5. Encourage follow-up questions and ongoing engagement with the customer.
 
-7) **Apply changes**.
-8) **Test the chatbot** with the question “What do you do?” to see a context-specific response. Notably, if you asked the same question before updating the context, the answer would have been more generic.
+7. **Apply changes**.
+8. **Test the chatbot** with the question "What do you do?" to see a context-specific response. Notably, if you asked the same question before updating the context, the answer would have been more generic.
 
 ## 🚀 Milestone #1: Result
 
@@ -210,11 +212,14 @@ You can test the model by opening the **playground** and chatting with it. Ask s
    > **TIP**: If you’re using identity-based authentication, **Storage Blob Data Contributor**, **Storage File Privileged Contributor** (inside Storage account), and **Cognitive Services OpenAI Contributor** (inside AI services) must be assigned to any user or managed identity needing storage access.
 
 4. **Storage Account Datastore Configuration**  
+
 ### 5. Create Connections to the Blob Storage & AI Search
+
 ### 6. Add the Custom Data to AI Foundry
+
 > **TIP**: Click **job details** to see the indexing job in [https://ml.azure.com](https://ml.azure.com). Times may vary by data size/resources.
 
-![Vector Indexing Status](https://github.com/DavidArayaS/AI-Powered-Insights-Fraud-Detection-Hackathon/blob/7b4a95aa515d6cea3bffc4253b32ac0981bb527a/04-AI%20Chatbot/Reference%20Pictures/vector13.png)
+![Vector Indexing Status](<Reference Pictures/vector13.png>)
 
 ### 7. Add Your Custom Data to Your Chat Model
 
@@ -224,11 +229,9 @@ You can test the model by opening the **playground** and chatting with it. Ask s
 4. For **Search type**, keep **hybrid**  
 5. No other changes; your chatbot now includes **custom data**  
 6. After refreshing, ask specific questions like:
-   - “What is the Address of ADDR-29841?”
-   - “What is the ApplicationID of the customer CLI-19708?”
-   - “How many clients does Wayne Enterprises company have?”
-   - “How many addresses are from Texas?”
-   - “Can you list all the address IDs for the addresses from Texas?”
+   - "What is the Address of Customer_1354?"
+   - "im looking for everything related to Customer_1354"
+   - "how many loyaltyTier does this customer went through? and when all?"
 
 **Congratulations!**  
 You’ve trained the model with **your data**, giving domain-specific answers. Note:
@@ -282,7 +285,7 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 8. In **modify_query_with_history**:
    - **Connection** = default Azure OpenAI
    - **Api** = `chat`
-   - **deployment_name** = `gpt-35-turbo-16k`
+   - **deployment_name** = `gpt-35-turbo`
    - **response_format** = `{"type":"text"}`
 
 9. Once the compute session starts, go to **lookup**:
@@ -304,7 +307,7 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 12. In **chat_with_context**:
    - **Connection** = `Default_AzureOpenAI`
    - **Api** = `Chat`
-   - **deployment_name** = `gpt-35-turbo-16k`
+   - **deployment_name** = `gpt-35-turbo`
    - **response_format** = `{"type":"text"}`
    - `prompt_text (string)` = `${Prompt_variants.output}`
 
@@ -315,13 +318,12 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 17. Review the output of each tool in the flow  
 18. Enter additional queries, for example:
 
-    What is the status of the client with ClientId CLI-28048?.
-    What is the Address of ADDR-29841?
-    What is the ApplicationID of the customer CLI-19708?
-    Is the loan approved?
-    How many clients does Wayne Enterprises company has?
-    How many addresses are from texas?
-    Can you list down all the address ID for the addresses from Texas?
+    What is the Address of Customer_1354?
+    im looking for everything related to Customer_1354
+    how many loyaltyTier does this customer went through? and when all?
+    What products has Customer_1354 purchased?
+    What is the loyalty status of this customer?
+    Can you show me the purchase history?
 
 19. Notice how it uses **index data** and **chat history**  
 20. Observe each tool’s transformations to build a contextual prompt
@@ -351,7 +353,7 @@ You need a model capable of generating **natural language responses** from your 
 - **Steps**:
 
 1. In the **Azure AI Foundry** portal, within your **Azure OpenAI** resource, go to **Deployments** → **Model deployments** → **Deploy base model**.
-2. Create a new deployment of `gpt-35-turbo-instruct` by selecting **Customize** after confirming:
+2. Create a new deployment of `gpt-35-turbo` by selecting **Customize** after confirming:
 3. **Test** your chatbot with a quick question like “What do you do?” to confirm it responds.
 
 Now we’ll move to our local environment so this OpenAI service can connect with our CSV data in a **human-readable** manner.
@@ -428,7 +430,7 @@ combined_df.to_csv(combined_csv_path, index=False)
 from langchain_openai import AzureOpenAI
 
 llm = AzureOpenAI(
-    deployment_name="gpt-35-turbo-instruct",
+    deployment_name="gpt-35-turbo",
     openai_api_type="azure",
     openai_api_key="your_azure_openai_key_here",
     azure_endpoint="<<your openAI resource end point>>",
@@ -436,7 +438,7 @@ llm = AzureOpenAI(
 )
 ```
 
-6. Create the CSV agent using Langchain and combine the same to a single file and save locally to get the results faster
+5. Create the CSV agent using Langchain and combine the same to a single file and save locally to get the results faster
 
 ```python
 %pip install langchain_experimental
@@ -451,16 +453,16 @@ agent = create_csv_agent(
 )
 ```
 
-7. Invoke the agent and ask the questions which are structured queries but in human-readable format
+6. Invoke the agent and ask the questions which are structured queries but in human-readable format
 
 ```python
-agent.invoke("how many addresses are from Texas?")
+agent.invoke("im looking for everything related to Customer_1354?")
 ```
 
-8. Invoke the agent and ask more complicated questions which are structured queries but in human-readable format which also did not give us the right answers in the past milestones
+7. Invoke the agent and ask more complicated questions which are structured queries but in human-readable format which also did not give us the right answers in the past milestones
 
 ```python
-agent.invoke("can you list down all the address IDs for the addresses from Texas?")
+agent.invoke("how many loyaltyTier does this customer went through? and when all")
 ```
 
 Congratulations! 🎉 You are now able to talk to the CSV using the OpenAI resources programmatically. The last two questions weren't answered in the first 3 milestones, and we started getting the correct responses for the questions we asked in the format we want! 🏆

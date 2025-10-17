@@ -1,4 +1,4 @@
-# 📖 Solution to Challenge 04: Setting Up LLMs for a Chatbot and its Dependencies
+# 📖 Solution to AI Challenge 01: Setting Up LLMs for a Chatbot and its Dependencies
 
 ## 🔹 Objective
 In this challenge, you will:
@@ -38,14 +38,14 @@ In this challenge, you will:
 ### 1️⃣ Create the Resource Group (RG)
 
 **Steps:**
-1) Sign in to the Azure portal.  
-2) Select **Resource groups**.  
-3) Select **Create**.  
-4) Enter the following details:
+1. Sign in to the Azure portal.  
+2. Select **Resource groups**.  
+3. Select **Create**.  
+4. Enter the following details:
    - **Subscription**:
    - **Resource group**:
    - **Region**:
-5) Select **Review + Create**.
+5. Select **Review + Create**.
 
 ![Create Resource Group](<Reference Pictures/1.png>)
 
@@ -53,9 +53,9 @@ In this challenge, you will:
 
 ### 2️⃣ Create/Use the existing Storage account (this will be source of our custom data)
 
-1) On the **Storage accounts** page, select **Create**.  
-2) Fill in the required details.  
-3) Enter the following details:
+1. On the **Storage accounts** page, select **Create**.  
+2. Fill in the required details.  
+3. Enter the following details:
    - **Subscription**  
    - **Resource group**  
    - **Storage account name**  
@@ -64,12 +64,12 @@ In this challenge, you will:
    - **Redundancy**: **LRS**  
    - **Networking**: enable public access from all networks (to avoid isolated environment-specific issues)  
    - Keep everything else default  
-4) Select **Review + Create**  
-5) Click **Create**
+4. Select **Review + Create**  
+5. Click **Create**
 
 ![Create Storage Account](<Reference Pictures/2.png>)
 
-6) Once the storage account is created, create a container `refined-data` and upload all four CSV files into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
+6. Once the storage account is created, create a container `refined-data` and upload all four CSV files into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
    - A **storage account** with a **container** inside
    - A **subfolder** in that container
    - All the files in CSV format inside that subfolder
@@ -82,17 +82,17 @@ When everything is done, it will look like this:
 
 ### 3️⃣ Create the Key Vault
 
-1) On the **Key Vault** page, select **Create**.  
-2) Fill in the required details.  
-3) Enter the following:
+1. On the **Key Vault** page, select **Create**.  
+2. Fill in the required details.  
+3. Enter the following:
    - **Subscription**  
    - **Resource group**  
    - **Key Vault Name**  
    - **Region**  
    - **Pricing tier**: **Standard**  
    - Keep everything else default
-4) Select **Review + Create**  
-5) Click **Create**
+4. Select **Review + Create**  
+5. Click **Create**
 
 ![Key Vault Creation](<Reference Pictures/kv4.png>)
 
@@ -100,28 +100,28 @@ When everything is done, it will look like this:
 
 ### 4️⃣ Create a Search Service Connection to Index the Sample Product Data
 
-1) On the **home page**, select **+ Create a resource** and search for **Azure AI Search**. Then create a new Azure AI Search resource with the following:
+1. On the **home page**, select **+ Create a resource** and search for **Azure AI Search**. Then create a new Azure AI Search resource with the following:
    - **Subscription**  
    - **Resource group**  
    - **Service name**  
    - **Location**: pick from any region mentioned in the Tips  
    - **Pricing tier**: **Standard**  
    - **Scale**: Increase the search unit by 4 to enhance query performance
-2) Wait for deployment to complete
+2. Wait for deployment to complete
 
 ![Azure AI Search Creation](<Reference Pictures/search5.png>)
 ---
 
 ### 5️⃣ Create an Azure Open AI Service
 
-1) On the **home page**, select **+ Create a resource** and search for **Azure OpenAI**. Create a new service using:
+1. On the **home page**, select **+ Create a resource** and search for **Azure OpenAI**. Create a new service using:
    - **Subscription**  
    - **Resource group**  
    - **Region**: pick from the recommended regions in the Tips  
    - **Name**  
    - **Pricing tier**: **StandardS0**  
    - **Scale**: Increase search unit by 4 for better performance
-2) Wait for deployment to complete
+2. Wait for deployment to complete
 
 ![Azure AI Services Creation](<Reference Pictures/aiservice6.png>)
 
@@ -131,7 +131,7 @@ When everything is done, it will look like this:
 
 ### 6️⃣ Create a Hub
 
-1) On the **AI Foundry** page at [https://portal.azure.com](https://portal.azure.com), select **+ Create** and **Hub**. Provide:
+1. On the **AI Foundry** page at [https://portal.azure.com](https://portal.azure.com), select **+ Create** and **Hub**. Provide:
    - **Subscription**  
    - **Resource group**  
    - **Region**: choose one from the Tips  
@@ -142,7 +142,7 @@ When everything is done, it will look like this:
    - **Networking**: default (public)  
    - Everything else default  
    - **Create + Review**, then **Create**
-2) Wait for deployment to finish
+2. Wait for deployment to finish
 
 ![Hub Creation](<Reference Pictures/hub7.png>)
 
@@ -150,7 +150,7 @@ When everything is done, it will look like this:
 
 ### 7️⃣ Create a Project
 
-1) On the **AI Foundry** page at [https://portal.azure.com](https://portal.azure.com), select **+ Create** and **Project**. Provide:
+1. On the **AI Foundry** page at [https://portal.azure.com](https://portal.azure.com), select **+ Create** and **Project**. Provide:
    - **Subscription**  
    - **Resource group**  
    - **Region**: choose from the recommended regions  
@@ -158,7 +158,7 @@ When everything is done, it will look like this:
    - **Hub**: pick the Hub you created  
    - Keep other defaults  
    - **Create + Review**, then **Create**
-2) Wait for deployment
+2. Wait for deployment
 
 ![Project Creation](<Reference Pictures/project8.png>)
 
@@ -174,8 +174,8 @@ You need two models:
 - **An embedding model** (text-embedding-ada-002)
 - **A generative model** (like gpt-4.1)
 
-1) In **Azure AI Foundry**, open your **project** → **My assets** → **Models + endpoints**.
-2) **New deployment** of `text-embedding-ada-002` (click **Customize**):
+1. In **Azure AI Foundry**, open your **project** → **My assets** → **Models + endpoints**.
+2. **New deployment** of `text-embedding-ada-002` (click **Customize**):
    - **Deployment name**: `text-embedding-ada-002`
    - **Type**: Standard
    - **Model version**: default
@@ -183,12 +183,12 @@ You need two models:
    - **Tokens per Minute**: max
    - **Content filter**: DefaultV2
    - **Enable dynamic quota**: optional  
-   > If insufficient quota, you’ll be asked to choose a different location; a new AI resource will be created.
+   > If insufficient quota, you'll be asked to choose a different location; a new AI resource will be created.
 
-3) **Repeat** the deployment for `gpt-35-turbo` under the name `gpt-35-turbo`.
-4) **Select** `gpt-35-turbo` → **Open in playground**.
-5) Test with “What do you do?” to see the default response.
-6) **Now change** instructions/context:
+3. **Repeat** the deployment for `gpt-35-turbo` under the name `gpt-35-turbo`.
+4. **Select** `gpt-35-turbo` → **Open in playground**.
+5. Test with "What do you do?" to see the default response.
+6. **Now change** instructions/context:
 
 ![Model Instructions](<Reference Pictures/model9.png>)
 
@@ -206,12 +206,12 @@ You need two models:
 **Instructions**:
 1. Engage as a friendly, knowledgeable retail advisor.
 2. Use customer profile, transaction history, and loyalty data to provide accurate recommendations.
-3. Tailor responses to each customer’s preferences, loyalty tier, and shopping behavior.
+3. Tailor responses to each customer's preferences, loyalty tier, and shopping behavior.
 4. Be practical, prioritize safety, and respect customer privacy at all times.
 5. Encourage follow-up questions and ongoing engagement with the customer.
 
-7) **Apply changes**.
-8) **Test the chatbot** with the question “What do you do?” to see a context-specific response. Notably, if you asked the same question before updating the context, the answer would have been more generic.
+6. **Apply changes**.
+7. **Test the chatbot** with the question "What do you do?" to see a context-specific response. Notably, if you asked the same question before updating the context, the answer would have been more generic.
 
 ## 🚀 Milestone #1: Result
 
@@ -277,22 +277,22 @@ You can test the model by opening the **playground** and chatting with it. Ask s
 
    > **TIP**: You can also create SAS URLs or use Entra ID in various ways. We’re using **Entra ID** for simplicity below.
 
-### 5. Create Connections to the Blob Storage & AI Search
+### 5️⃣ Create Connections to the Blob Storage & AI Search
 
 1. A straightforward option is to open the **Management Center** at [ai.azure.com](https://ai.azure.com) or [ml.azure.com](https://ml.azure.com) and create connections under **Connected resources** → **+ New connection**.  
 2. Add **Azure AI Search** as an internal connection.
 
-3. For loading custom data (if not uploading directly to AI Foundry), we’ll use **Azure Blob storage**:
+3. For loading custom data (if not uploading directly to AI Foundry), we'll use **Azure Blob storage**:
 
-   - **i)** Click **+ New connection**  
-   - **ii)** Choose **Blob storage**  
-   - **iii)** Select the **subscription ID**, **storage account**, and **blob container** (the main container)
+   - **a.** Click **+ New connection**  
+   - **b.** Choose **Blob storage**  
+   - **c.** Select the **subscription ID**, **storage account**, and **blob container** (the main container)
 
-   **Option 4#a**:
+   **Option 4.a**:
    - Under **authentication method**, select **Microsoft Entra ID based**
    - Name the connection, click **Save**
 
-   **Option 4#b**:
+   **Option 4.b**:
    - Under **authentication method**, select **Credential based**
    - Under **authentication type**, select **Account key**, then paste your storage account key
    - Name the connection, click **Save**
@@ -301,7 +301,7 @@ You can test the model by opening the **playground** and chatting with it. Ask s
 
 ---
 
-### 6. Add the Custom Data to AI Foundry
+### 6️⃣ Add the Custom Data to AI Foundry
 
 1. Go to your **project** in **Azure AI Foundry**  
 2. Select **Data + Indexes**  
@@ -314,14 +314,14 @@ You can test the model by opening the **playground** and chatting with it. Ask s
 7. Once it’s created, verify it’s **readable** and shows **file count** and **total size**. A quick preview helps confirm correct ingestion.
 
 8. Now create the **Index**:
-   - i) Go to **Indexes**
-   - ii) Click **+ New Index**
-   - iii) Under **Data Source**, pick **Data in Azure AI Foundry**  and then pick the **Data** (the data you just set up)
-   - iv) Select the data
-   - v) **Index configuration**: pick your **AI Search** service, name the vector index, optionally choose higher compute  
-   - vi) Select the **AOAI Service** **Embedding model** & **Embedding model deployment**  connection from when you created the project  
-   - vii) Click **Create vector index**  
-   - viii) Status will show “In progress” while indexing completes
+   - a. Go to **Indexes**
+   - b. Click **+ New Index**
+   - c. Under **Data Source**, pick **Data in Azure AI Foundry**  and then pick the **Data** (the data you just set up)
+   - d. Select the data
+   - e. **Index configuration**: pick your **AI Search** service, name the vector index, optionally choose higher compute  
+   - f. Select the **AOAI Service** **Embedding model** & **Embedding model deployment**  connection from when you created the project  
+   - g. Click **Create vector index**  
+   - h. Status will show "In progress" while indexing completes
 
 ![Creating a Vector Index](<Reference Pictures/vector12.png>)
 
@@ -331,7 +331,7 @@ You can test the model by opening the **playground** and chatting with it. Ask s
 
 ---
 
-### 7. Add Your Custom Data to Your Chat Model
+### 7️⃣ Add Your Custom Data to Your Chat Model
 
 1. In your **Azure AI Foundry** project, under **Playgrounds**, open **try the chat playground**  
 2. Click **Add your data**  
@@ -380,13 +380,13 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 4. **Create** prompt variants (system message, structured history)  
 5. **Submit** the final prompt to a language model to get a natural language response
 
-### 1. Save the Current Prompt Flow
+### 1️⃣ Save the Current Prompt Flow
 
 1. In **Azure AI Foundry**, open your **project** → **Playgrounds** → **chat model**  
 2. Click **prompt flow** and save it with a name like `default-flow`  
-3. Review the steps in the flow; you’ll soon clone it so the chat can include conversation history
+3. Review the steps in the flow; you'll soon clone it so the chat can include conversation history
 
-### 2. Use the Index in a Prompt Flow
+### 2️⃣ Use the Index in a Prompt Flow
 
 1. Your **vector index** is already stored in your **AI Foundry** project, making it simple to include in a prompt flow  
 2. In the **AI Foundry** portal, open your **project** → **Build and customize** → **Prompt flow**  
@@ -448,7 +448,7 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 19. Notice how it uses **index data** and **chat history**  
 20. Observe each tool’s transformations to build a contextual prompt
 
-#### 3. Deploy the Flow
+### 3️⃣ Deploy the Flow
 
 1. On the **toolbar**, select **Deploy**  
 2. Use the following settings:
@@ -464,7 +464,7 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 3. In the **Azure AI Foundry** portal, open your **project** → **My assets** → **Models + endpoints**. Watch for the new deployment to appear as **succeeded** under your new endpoint (can take time).  
 4. When done, select it → **Test** page to check the response  
 5. Enter a follow-up prompt and review the output  
-6. Go to **Consume**, where you’ll find connection details and sample code to integrate this prompt flow as a copilot in your application
+6. Go to **Consume**, where you'll find connection details and sample code to integrate this prompt flow as a copilot in your application
 
 **Congratulations!** You’ve trained the model with your own data and created a new prompt flow so users can chat iteratively while retaining history. The conversation context is included each time.
 
@@ -481,7 +481,7 @@ The sample prompt flow you are using implements the prompt logic for a chat appl
 
 **Context**: At the end of Milestone #2, we observed the model handling certain questions (e.g., specific data fields). But for **SQL-formatted queries** or more complex data in a **human-readable** format, our chat app isn’t fully autonomous yet. Larger or semi-structured data (like CSV or Excel) can be challenging. This is where an **AI Agent** using an **AI Model framework like Langchain**  and  **OpenAI Service** comes in, enabling powerful, flexible queries on more complex data.
 
-### 1. Create an Azure OpenAI Resource from the Portal (for the sake of the Milestone please create a new )
+### 1️⃣ Create an Azure OpenAI Resource from the Portal (for the sake of the Milestone please create a new )
 
 1. Sign in to the **Azure portal**.  
 2. Search/Select **Azure OpenAI**.  
@@ -495,15 +495,15 @@ The sample prompt flow you are using implements the prompt logic for a chat appl
 5. Keep other defaults.  
 6. Select **Review + Create**.  
 7. When deployment is done, open the resource to note the keys/endpoints (for later).  
-8. Click **Go to Azure AI Foundry portal**, and we’ll continue our setup there.
+8. Click **Go to Azure AI Foundry portal**, and we'll continue our setup there.
 
 ![Azure OpenAI Resource Creation](<Reference Pictures/openai14.png>)
 
-### 2. Deploy Model
+### 2️⃣ Deploy Model
 
 You need a model capable of generating **natural language responses** from your data.
 
-- **Steps**:
+**Steps**:
 
 1. In the **Azure AI Foundry** portal, within your **Azure OpenAI** resource, go to **Deployments** → **Model deployments** → **Deploy base model**.
 2. Create a new deployment of `gpt-35-turbo` by selecting **Customize** after confirming:
@@ -513,7 +513,7 @@ You need a model capable of generating **natural language responses** from your 
    - **Resource location**: keep the default
    - **Tokens per Minute**: slide to maximum
    - **Enable dynamic quota**: optional
-3. **Test** your chatbot with a quick question like “What do you do?” to confirm it responds.
+3. **Test** your chatbot with a quick question like "What do you do?" to confirm it responds.
 
 Now we’ll move to our local environment so this OpenAI service can connect with our CSV data in a **human-readable** manner.
 
@@ -534,7 +534,7 @@ Python Debugger
 Python snippets
 ```
 
-### 3. Write the python Code using Langchain framework and read the csv from storage account ,combine and get it ready for querying using an agent,deploy an agent and invoke the agent to get answers
+### 3️⃣ Write the python Code using Langchain framework and read the csv from storage account ,combine and get it ready for querying using an agent,deploy an agent and invoke the agent to get answers
 
 1. Install the various python packages we will be using during this coding session.open up a new file with .ipynb extension,this will help us run the code in cells and seperate functions ,this is better for troubleshooting and learning the python coding also
 

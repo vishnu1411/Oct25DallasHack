@@ -271,9 +271,9 @@ class AlternativesAgent(BaseAgent):
 
 ---
 
-## 🚀 Milestone #1: Multi-Agent Foundation (30 minutes)
+## 1️⃣ Milestone 1: Multi-Agent Foundation (30 minutes)
 
-### Step 1: Verify Project Structure
+### 1.1 Verify Project Structure
 ```powershell
 # Check that all files are present (Python 3.12)
 python -c "
@@ -310,7 +310,7 @@ for file in required_files:
 "
 ```
 
-### Step 2: Test Agent Initialization
+### 1.2 Test Agent Initialization
 ```powershell
 # Test individual agent creation (Python 3.12)
 python tests/test_agents.py
@@ -331,7 +331,7 @@ Testing Agent Initialization
 ✅ All agents successfully initialized!
 ```
 
-### Step 3: Test Data Models
+### 1.3 Test Data Models
 ```powershell
 # Verify Pydantic models work correctly (Python 3.12)
 python -c "
@@ -368,7 +368,7 @@ print(f'✅ AgentResponse created with confidence: {response.confidence}')
 "
 ```
 
-### 🎯 Success Criteria for Milestone #1
+### 🎯 Success Criteria for Milestone 1
 - [ ] All 5 agents initialize without errors
 - [ ] Data models validate correctly
 - [ ] Project structure is complete
@@ -376,9 +376,9 @@ print(f'✅ AgentResponse created with confidence: {response.confidence}')
 
 ---
 
-## 🚀 Milestone #2: Conversation Memory & Context (45 minutes)
+## 2️⃣ Milestone 2: Conversation Memory & Context (45 minutes)
 
-### Step 1: Understanding the Memory System
+### 2.1 Understanding the Memory System
 The session context tracks everything:
 
 ```python
@@ -394,7 +394,7 @@ session_context = {
 }
 ```
 
-### Step 2: Test Conversation Flow
+### 2.2 Test Conversation Flow
 ```powershell
 # Test the conversation memory system (Python 3.12)
 python -c "
@@ -443,7 +443,7 @@ asyncio.run(test_memory())
 "
 ```
 
-### Step 3: Test Confirmatory Responses
+### 2.3 Test Confirmatory Responses
 ```powershell
 # Create a test for "yes/no" handling (Python 3.12)
 python -c "
@@ -488,7 +488,7 @@ asyncio.run(test_confirmatory())
 "
 ```
 
-### 🎯 Success Criteria for Milestone #2
+### 🎯 Success Criteria for Milestone 2
 - [ ] Session context tracks products shown
 - [ ] Conversation history persists across queries
 - [ ] Confirmatory responses work ("yes" triggers correct action)
@@ -496,9 +496,9 @@ asyncio.run(test_confirmatory())
 
 ---
 
-## 🚀 Milestone #3: Azure Integration & Smart Alternatives (45 minutes)
+## 3️⃣ Milestone 3: Azure Integration & Smart Alternatives (45 minutes)
 
-### Step 1: Verify Azure Search Connection
+### 3.1 Verify Azure Search Connection
 ```powershell
 # Test Azure Search connectivity (Python 3.12)
 python -c "
@@ -543,7 +543,7 @@ asyncio.run(test_search())
 "
 ```
 
-### Step 2: Test Smart Alternatives System
+### 3.2 Test Smart Alternatives System
 ```powershell
 # Test the alternatives agent (Python 3.12)
 python -c "
@@ -590,7 +590,7 @@ asyncio.run(test_alternatives())
 "
 ```
 
-### Step 3: Test End-to-End Integration
+### 3.3 Test End-to-End Integration
 ```powershell
 # Test complete pipeline with Azure services (Python 3.12)
 python test_app.py
@@ -620,7 +620,7 @@ py -3.12 test_app.py
    I found several routers in our inventory! Here are the top options...
 ```
 
-### 🎯 Success Criteria for Milestone #3
+### 🎯 Success Criteria for Milestone 3
 - [ ] Azure Search returns real products
 - [ ] Alternatives system provides relevant suggestions
 - [ ] No timeout or connection errors
@@ -628,9 +628,188 @@ py -3.12 test_app.py
 
 ---
 
-## 🚀 Milestone #4: Advanced Conversation Flow (30 minutes)
+## 4️⃣ Milestone 4: Production Application Testing (30 minutes)
 
-### Step 1: Test Complex Conversation Patterns
+**🎯 Goal**: Test the complete multi-agent application using main.py from VS Code terminal
+
+### 4.1 Launch the Multi-Agent Application
+
+**Important**: This milestone focuses on testing the actual production application (`main.py`), not the simple test script (`test_app.py`). We'll run the full interactive multi-agent system from the VS Code terminal.
+
+#### Opening VS Code Terminal
+```powershell
+# In VS Code, open integrated terminal (Ctrl + ` or Terminal > New Terminal)
+# Make sure you're in the Multi_Agent_App directory
+cd "AI03-Multi_Agent/Multi_Agent_App"
+
+# Verify you're in the correct directory
+dir
+# You should see: main.py, requirements.txt, agents/, config/, etc.
+```
+
+#### Activate Virtual Environment (if created)
+```powershell
+# If you created a virtual environment in Milestone 1
+.\venv\Scripts\activate
+
+# Verify Python version
+python --version
+# Should show: Python 3.12.x
+
+# OR use py launcher directly
+py -3.12 --version
+```
+
+#### Launch the Application
+```powershell
+# Method 1: Using python command (if Python 3.12 is default)
+python main.py
+
+# Method 2: Using py launcher (recommended for multiple Python versions)
+py -3.12 main.py
+
+# Method 3: Direct path (if needed)
+"C:\Users\YourName\AppData\Local\Programs\Python\Python312\python.exe" main.py
+```
+
+**Expected Output**:
+```
+🚀 Multi-Agent System Starting...
+✅ Environment loaded successfully
+✅ All agents initialized successfully
+🤖 Multi-Agent Assistant Ready!
+
+Enter your query (or 'quit' to exit): 
+```
+
+### 4.2 Interactive Testing Scenarios
+
+#### Test 1: Product Search (Available Item)
+```
+Enter your query: Do you have wireless headphones?
+
+Expected Response Pattern:
+🕵️ Intent Detector: High confidence product search
+📦 Inventory Agent: Found 3 wireless headphone options
+💡 Recommendations Agent: Suggesting premium wireless models
+📝 Response Formatter: "Yes! We have several wireless headphones available..."
+```
+
+#### Test 2: Product Search (Unavailable Item)
+```
+Enter your query: Do you carry Contoso UltraPhone X1?
+
+Expected Response Pattern:
+🕵️ Intent Detector: Product search request detected
+📦 Inventory Agent: Product not found in inventory
+🔄 Alternatives Agent: Finding similar smartphones
+💡 Recommendations Agent: Suggesting alternative phones
+📝 Response Formatter: "We don't have the Contoso UltraPhone X1, but..."
+```
+
+#### Test 3: General Inquiry
+```
+Enter your query: What's your return policy?
+
+Expected Response Pattern:
+🕵️ Intent Detector: General inquiry detected
+📝 Response Formatter: Providing general assistance
+(Note: This should not trigger inventory or alternatives agents)
+```
+
+#### Test 4: Conversation Memory Test
+```
+First query: Show me laptops
+Second query: Something cheaper
+Third query: What about gaming options?
+
+Expected Behavior:
+- System remembers previous product discussions
+- Avoids showing the same products repeatedly
+- Maintains context across the conversation
+```
+
+### 4.3 VS Code Terminal Features
+
+#### Real-time Monitoring
+```powershell
+# View live logs in terminal
+# The application shows agent processing in real-time:
+# 🕵️ Analyzing intent...
+# 📦 Searching inventory...
+# 🔄 Finding alternatives...
+# 💡 Generating recommendations...
+# 📝 Formatting response...
+```
+
+#### Debugging Information
+The terminal displays:
+- Agent initialization status
+- Processing steps for each query
+- Confidence scores and decision logic
+- Error messages with helpful context
+- Performance timing information
+
+#### Graceful Exit
+```
+Enter your query: quit
+
+Expected Output:
+👋 Thank you for using the Multi-Agent Assistant!
+📊 Session Summary:
+- Queries processed: X
+- Products shown: Y
+- Alternatives suggested: Z
+- Session duration: MM:SS
+```
+
+### 4.4 Troubleshooting Common Issues
+
+#### Issue 1: Import Errors
+```powershell
+# If you see module import errors:
+pip install -r requirements.txt
+# Or
+py -3.12 -m pip install -r requirements.txt
+```
+
+#### Issue 2: Environment Variables Missing
+```powershell
+# Check .env file exists and has required variables:
+type .env
+# Should show: AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_KEY, etc.
+```
+
+#### Issue 3: Azure Service Connection
+```
+# If you see Azure connection errors:
+# 1. Verify your .env file has correct Azure credentials
+# 2. Check Azure OpenAI quota and availability
+# 3. Ensure Azure Search service is running
+```
+
+#### Issue 4: Python Version Conflicts
+```powershell
+# Verify Python 3.12 is being used:
+python -c "import sys; print(sys.version)"
+# Or force Python 3.12:
+py -3.12 main.py
+```
+
+### 🎯 Success Criteria for Milestone 4
+- [ ] Application launches successfully from VS Code terminal
+- [ ] All agents initialize without errors
+- [ ] Interactive conversation works smoothly
+- [ ] Real-time agent processing visible in terminal
+- [ ] Conversation memory functions correctly
+- [ ] Graceful exit with session summary works
+- [ ] Error handling provides helpful debugging information
+
+---
+
+## 5️⃣ Milestone 5: Advanced Conversation Flow (30 minutes)
+
+### 5.1 Test Complex Conversation Patterns
 Create a test script `test_conversation_flow.py`:
 
 ```python
@@ -682,7 +861,7 @@ python test_conversation_flow.py
 py -3.12 test_conversation_flow.py
 ```
 
-### Step 2: Test Edge Cases
+### 5.2 Test Edge Cases
 ```powershell
 # Test interruptions and context recovery (Python 3.12)
 python -c "
@@ -735,7 +914,7 @@ asyncio.run(test_edge_cases())
 "
 ```
 
-### 🎯 Success Criteria for Milestone #4
+### 🎯 Success Criteria for Milestone 5
 - [ ] Complex conversation flows work seamlessly
 - [ ] "Yes/no" responses interpreted correctly
 - [ ] System handles conversation pivots naturally

@@ -1,4 +1,4 @@
-# 📖 Solution to Challenge 02: Intelligent Agent with Cosmos DB (Recommendations)
+# 📖 Solution to AI Challenge 02: Intelligent Agent with Cosmos DB (Recommendations)
 
 ## 🎯 Objective 
 We have extended our Azure AI Foundry chatbot to integrate with Azure Cosmos DB, enabling it to provide on-the-fly product recommendations. The goal was to have the agent answer questions like “What should I buy with this product?” by querying a database of “frequently bought together” items. 
@@ -13,7 +13,8 @@ Let’s go through the steps in detail.
 
 ## 🚀 Milestone #1: Setting up Cosmos DB and Data 
 
-**1. Azure Cosmos DB Account:** We created a new Cosmos DB for NoSQL account named “contoso-cosmos” in the same resource group and region as previous resources. (In Azure Portal: Create Cosmos DB -> NoSQL -> fill in RG and name.)
+### 1️⃣ Azure Cosmos DB Account
+We created a new Cosmos DB for NoSQL account named "contoso-cosmos" in the same resource group and region as previous resources. (In Azure Portal: Create Cosmos DB -> NoSQL -> fill in RG and name.)
 
 - Sign in to the Azure Portal and click Create a resource. Search for "Azure Cosmos DB".
 - Choose the Azure Cosmos DB for NoSQL option.
@@ -22,7 +23,8 @@ Let’s go through the steps in detail.
 
 Why: Cosmos DB will store the "frequently bought together" recommendation data.
 
-**2. Database and Container:** In the Cosmos DB account, under Data Explorer:  
+### 2️⃣ Database and Container
+In the Cosmos DB account, under Data Explorer:
 - Once the Cosmos DB account is ready, go to it in the Azure Portal. In the left menu, find Data Explorer.
 - Select the New Database from the drop down menu right above  **Home**. Name the database (for example, RetailData) and leave throughput as-is (we'll set it at the container level). Hit OK.
 - Select the new DB and right click on the DB and select **+ New Container**.
@@ -34,7 +36,7 @@ Why: Cosmos DB will store the "frequently bought together" recommendation data.
 ![Cosmos DB](<Reference Pictures/cosmos_ss.png>)
 Why: A container in Cosmos DB (like a table) will hold documents where each document maps one product to a list of recommended products.
 
-**3. Import Recommendation Data from CSV:**
+### 3️⃣ Import Recommendation Data from CSV
    - Use the provided CSV file (`tailwind_traders_challenge2_data.csv`) located one folder outside your current directory. This file contains product relationships (product, suggestions).
    - Convert the CSV to JSON using the following Python script:
 ```python
@@ -67,9 +69,10 @@ with open('recommendations.json', 'w', encoding='utf-8') as out:
    - Upload the resulting JSON to Cosmos DB using Data Explorer’s “Upload JSON” feature or the Azure SDK,Under ***Items*** ,use the ***Upload data*** and ***Select Json Files*** option
    - Ensure each document includes the partition key field (`Product`).
 
-**4. Verify Data:** 
+### 4️⃣ Verify Data
+
 - Open the SQL Query tab then paste the below 
-- `SELECT c.Product, c.suggestions FROM c`. It will return each product (by Product) with its suggestions array, confirming our entries. 
+- `SELECT c.Product, c.suggestions FROM c`. It will return each product (by Product) with its suggestions array, confirming our entries.
 
 ![Cosmos DB Query Output](<Reference Pictures/cosmos_query_ss.png>)
 
@@ -86,11 +89,11 @@ At this point we have the Cosmos DB with sample data ,for recommandations and th
 
 We decided to use **OpenAI function calling** within the Foundry agent to query Cosmos DB, as this approach offers explicit control when testing the “fresh concept” of an agent performing actions. (Note: Foundry’s direct Cosmos connection will also be set up but function calling gives more transparency in this challenge.)
 
-**1. Set up your Development Environment in VS Code:** 
+### 1️⃣ Set up your Development Environment in VS Code
 - Python Installation: Ensure you have Python installed on your machine (Azure Functions supports 3.8 through 3.12 as of early 2025). On Windows, open a Command Prompt and run python --version to verify. If you have Python 3.13 installed, note that Azure Functions added support for 3.13 in mid-2025, but you may need the latest Azure Functions tools. If the tooling doesn’t recognize 3.13, consider installing Python 3.10 or 3.11 for compatibility during development. (The Azure Functions Python library officially supported up to 3.12 prior to 3.13’s preview.) 
 - Azure Functions Core Tools & VS Code: Install the Azure Functions Core Tools and the Azure Functions extension for VS Code . This provides a local runtime and project scaffolding.
 
-**2. Create A Function APP Project (inside VS Code):** 
+### 2️⃣ Create A Function APP Project (inside VS Code)
 - In VS Code, open the Command Palette (Ctrl+Shift+P or F1) and select "Azure Functions: Create New Project...."
 - Choose or create a folder for your function project.
 - Select Python as the language, then choose a Python version that matches your environment (e.g., Python 3.10). (If the drop-down only shows Python 3.9, ensure you installed a newer Python and restarted VS Code. You may manually specify a higher version in the project’s runtime.txt if needed.)
@@ -111,7 +114,7 @@ If using function APP V2 (Modern Decorator-Based) below will be the folder struc
  ![FunAPP V2 Dir Structure](<Reference Pictures/functionapp_v2_directory_structure.png>)
 
 
-**3.Write the function Code:** 
+### 3️⃣ Write the function Code
 - Open the __init__.py file (function_app.py file if you have FunctionAPP V2 ). We’ll replace its contents with code that queries Cosmos DB. First, add Azure Cosmos SDK to the project’s requirements. Open requirements.txt and add:
 
 ```Text
@@ -212,18 +215,19 @@ If you have multiple Python versions installed, it's best to use a virtual envir
 
 ![Func App VSCode local testing](<Reference Pictures/functionapp_v1_localtest.png>)
 
-**4. Creat Azure Functions :** 
+### 4️⃣ Create Azure Functions
 - Go to the Azure Portal, click Create a resource, search for Function App.
 - Create a new Function App (name it something like contoso-recommend-func). Use the same resource group and region,Flex Consumption will do for this testing.
 - For runtime, choose Python 3.12 and make sure you match what you have locally installed or used in your virtual environment
 - Keep everthing default and create the function app
 
 
-**5. Managed Identity Setup:** First, we ensured our Azure AI Services resource’s managed identity has access to Cosmos DB:  
+### 5️⃣ Managed Identity Setup
+First, we ensured our Azure AI Services resource's managed identity has access to Cosmos DB:
    - In the **Cosmos DB account** IAM, we added a role assignment: **Cosmos DB Account Reader** (or Contributor) to the ContosoAIService managed identity. This allows it to read data.  
    - Because we are doing function calls in code, we also generated a **Primary Key** from Cosmos DB (available in Keys section) to use in the function. (Alternatively, one could use the Managed Identity token, but for simplicity we used the key in our Azure Function.)
 
-**6. Deploy the Function to Azure :**
+### 6️⃣ Deploy the Function to Azure
 - GO to VS Code’s Azure extension. Find your subscription > Function Apps > your function app name. Right-click and choose Deploy to Function App.
 - VS Code will package your code and deploy it. On first deployment, it may ask to overwrite – confirm yes (since the function app is empty).
 
@@ -256,7 +260,7 @@ the above querry will spit a json output with recommandations
 
 ![Fun App Browser testing](<Reference Pictures/functionapp_browsertest.png>)
 
-**7. Foundry Agent Function Registration**
+### 7️⃣ Foundry Agent Function Registration
 
 Azure AI Foundry currently doesn’t have a GUI to register custom functions to the GPT model, but you can implement this in the **prompt flow**. There are several integration options:
 
@@ -378,6 +382,8 @@ For this example, we'll use a prompt flow script to package everything as an AI 
     ```
 
 ![LLM SS-PartI](<Reference Pictures/promptflow_llm_part1.png>)
+
+
 ![LLM SS-PartII](<Reference Pictures/promptflow_llm_part2.png>)
 
 

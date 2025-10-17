@@ -40,8 +40,26 @@ Participants must have access to an **Azure subscription** with the following:
   - The rest of the team should have **Contributor access** to the subscription or a dedicated resource group.  
 - **GitHub Account (Optional)**: Ideally, each participant should have a **GitHub account** for accessing repository resources and collaboration.  
 
+### 🔹 Azure Setup Best Practices
+
+**🏗️ Resource Organization:**
+- **Keep all resources and Resource Groups in the same Region** for ease of understanding and standardization
+- **Add tags to Resources and Resource Groups** when creating them for cost management and identification
+- Most companies have organizational policies on auto-creation of Key Vault & Storage accounts, so **create all resources separately** and stitch them together
+
+**📍 Recommended Regions:**
+Ensure the location/region for each resource is preferably one of the following for smooth testing:
+- **Australia East**
+- **Canada East**  
+- **East US**
+- **East US 2**
+- **France Central**
+- **Japan East**
+- **North Central US**
+- **Sweden Central**
+- **Switzerland North**
+
 ### 🔹 Azure Credit Considerations
-- **Estimated Usage**: Each participant should have access to approximately **$50-100 USD** in Azure credits for the full 2-day event
 - **Cost Optimization**: We'll provide guidance on managing costs and using free tiers where available
 - **Resource Cleanup**: Instructions will be provided for cleaning up resources after the event
 
@@ -59,8 +77,11 @@ Ensure the following **resource providers** are registered within your Azure sub
 - `Microsoft.MachineLearningServices`
 
 📌 **How to register**:  
+
 - Navigate to **Azure Portal** → **Subscription Settings** → **Resource Providers**  
 - Select each provider and **click Register**  
+
+**⚠️ Important**: Ensure that all necessary resource providers are registered. For example, you might need to register **Microsoft.PolicyInsights** and **Microsoft.Cdn** policies by selecting them and clicking the register button in the Azure Portal.  
 
 ---
 
@@ -112,7 +133,13 @@ Check the **TPM quota** for your **Azure subscription** for the following **Larg
 - `gpt-35-turbo` → **Minimum 120k TPM**  
 - `gpt-4o` → **Optional, minimum 30k TPM** (for advanced scenarios)
 
-📌 **If the current quota is less than 120k**, request a **quota increase** before the event to ensure availability. Quota increases typically take **24-48 hours for approval**, so it is **critical to complete this step in advance**.  
+📌 **Critical Quota Management**: 
+
+- **Check Current Quota**: If you are already familiar with Azure OpenAI, check your current quota for each model
+- **Request Increase**: If the current quota is in the 2-digit range (10k–90k), request a quota addition to increase it to whatever is maximum for each model
+- **Processing Time**: Quota increases typically take **24-48 hours for approval**, so it is **critical to complete this step in advance**
+
+📌 **If the current quota is less than 120k**, request a **quota increase** before the event to ensure availability.  
 
 - 🔹 **Check your current quota** → [Azure OpenAI Quota Guide](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/quota?tabs=rest)  
 - 🔹 **Request a quota increase** → [Request Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu)  
