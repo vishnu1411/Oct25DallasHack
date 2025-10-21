@@ -62,6 +62,9 @@ By completing this challenge, you will master:
 
 ### 🏗️ Medallion Data Engineering Architecture
 
+![Architecture Overview](https://github.com/vvenugopalan_microsoft/HackathonOct25/blob/main/Architecture/details.png)
+
+
 ```mermaid
 graph TB
     subgraph "Data Sources Layer"
@@ -328,6 +331,30 @@ Solution:
 - Check dimension table unique keys
 - Validate join conditions in transformation logic
 - Test with small dataset first
+```
+
+**🔴Unable to Connect to Spark Session**
+```
+Problem: Cannot connect a new notebook to a spark session with error to stop existing session or scale up the Fabric capacity
+Solution: Try the following:
+-	Open a new code cell in the notebook. Run the following command: 
+# Stop the Spark session
+spark.stop()
+-	Try to connect the notebook to a New standard session
+-	Once connected, click on Stop session button  
+-	After session is stopped, connect to standard session again 
+-	This will ensure spark context is also started and running in the background
+```
+
+**🔴Copilot Authoring Disabled**
+```
+Problem: If getting message "Copilot authoring is currently disabled."
+Solution: To enable it, go to Power BI Settings and turn on Q&A for this semantic model” when creating report using Copilot (e.g. using prompt: Create a report using table gold*….), enable Q&A as follow:
+-	Open your workspace 
+-	Locate the semantic model you want to enable Copilot for from the list
+-	Click on the three dots (More options) next to your semantic model and select Settings
+-	Enable Q&A and Copilot: Toggle the switch to enable Q&A and Copilot for this semantic model.
+-	Hit Apply
 ```
 
 ### 📞 Support Resources

@@ -69,7 +69,7 @@ In this challenge, you will:
 
 ![Create Storage Account](<Reference Pictures/2.png>)
 
-6. Once the storage account is created, create a container `refined-data` and upload all four CSV files into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
+6. Once the storage account is created, create a container `refined-data` and upload the CSV file for first challange [Challange01 Data source folder](../Data_Source/01_CSV/tailwind_traders_retail_data.csv) into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
    - A **storage account** with a **container** inside
    - A **subfolder** in that container
    - All the files in CSV format inside that subfolder
@@ -172,7 +172,8 @@ When everything is done, it will look like this:
 
 You need two models:
 - **An embedding model** (text-embedding-ada-002)
-- **A generative model** (like gpt-4.1)
+- **A generative model** (like gpt-35-turbo)
+
 
 1. In **Azure AI Foundry**, open your **project** → **My assets** → **Models + endpoints**.
 2. **New deployment** of `text-embedding-ada-002` (click **Customize**):
@@ -349,11 +350,15 @@ You’ve trained the model with **your data**, giving domain-specific answers. N
 
 > **TIP**:Create seperate folder for JSON,CSV and TXT and upload those files to the storage container (refined-data as an example) and then create the data and index out of all 3 formats and detach/attach each type of Indexes with the LLM to see the difference in output the LLM will give you
 
+- **Best Way** the best way is to directly use AI search and upload the CSV file directly using the code [Upload the CSV entries directly to Search Index](../AI_Scripts/03_search_direct_upload.py)
 - **csv** might cause inconsistent answers
 - **txt** format often yields better responses
-- **Json** format is the best to out of all 3 formats 
+- **Json** format is the best to out of all 3 formats
+
 - **Our recomendation is to use TXT format for MS2 ,even though you will get inconsistent results ,you will learn why it happens and how it is getting fixed at MS4, but if you do not have time to go till MS4 use JSON file and you will see consistent results**
 - **Refined data yeilds more refined answers**
+
+
 - **Your AI application is as reliable as your Data**
 
 
@@ -437,13 +442,13 @@ You can **Build & Customize** a Generative AI app with your **own custom data**.
 17. Review the output of each tool in the flow  
 18. Enter additional queries, for example:
 
-    What is the status of the client with ClientId CLI-28048?.
-    What is the Address of ADDR-29841?
-    What is the ApplicationID of the customer CLI-19708?
-    Is the loan approved?
-    How many clients does Wayne Enterprises company has?
-    How many addresses are from texas?
-    Can you list down all the address ID for the addresses from Texas?
+    What products did Customer_1354 purchase?
+    What is the loyalty tier of Customer_1354?
+    How much did Customer_2048 spend in total?
+    What are the most popular product categories?
+    Which customers have Gold loyalty tier?
+    Can you show me all transactions from the Electronics category?
+    What recommendations can you make for frequent buyers?
 
 19. Notice how it uses **index data** and **chat history**  
 20. Observe each tool’s transformations to build a contextual prompt

@@ -5,6 +5,8 @@
 
 Your goal is to set up the **necessary infrastructure** to support a scalable data pipeline.  
 
+![Architecture Overview](https://github.com/vvenugopalan_microsoft/HackathonOct25/blob/main/Architecture/details.png)
+
 > **Note:** If you **already completed the Fabric Capacity setup** as per the **prerequisites email**, you can **skip those steps** and proceed with the rest of the challenge.  
 
 ---
@@ -35,7 +37,6 @@ By completing this challenge, you will:
    - **Capacity Name**: `YourFabricCapacity`  
    - **SKU**: `F32` (minimum recommended)  
    - **Region**: Closest to your location  
-   - **Security**: Enable **Private Link** (optional but recommended)  
 5. Click **Review + Create**  
 6. Wait for the deployment to complete.  
 
@@ -43,15 +44,17 @@ By completing this challenge, you will:
 
 ---
 
-## 🚀 Step 2: Assign Fabric Capacity in Microsoft Fabric (skip if you already provisioned your Fabric Capacity or if you are using a free trial)  
+## 🚀 Step 2: Create a Fabric Workspace
 
-### 1️⃣ Assign Fabric Capacity to Your Workspace  
+### 1️⃣ Create a Fabric Workspace and assign it to the new capacity
 
 1. Go to **Microsoft Fabric**  
-2. Click **Admin Settings** (⚙️ gear icon) → **Fabric Capacity**  
-3. Click **Assign Capacity**  
-4. Select the Fabric Capacity you created (`YourFabricCapacity`)  
-5. Click **Save**  
+2. Click **New Workspace**
+3. Give the workapce a name
+4. Scroll down and expand the **Advanced** options
+5. From the license modes, select **Fabric Capacity**
+6. Select the Fabric Capacity you created (`YourFabricCapacity`)  
+7. Click **Save**  
 
 ✅ **Outcome**: Your Fabric workspace is now connected to Microsoft Fabric Capacity.  
 
@@ -59,22 +62,16 @@ By completing this challenge, you will:
 
 ## 🚀 Step 3: Create a OneLake Lakehouse  
 
-### 1️⃣ Create a new Fabric Workspace
-
-![alt text](https://github.com/DavidArayaS/AI-Powered-Insights-Fraud-Detection-Hackathon/blob/cbc097fda45d32090f4d726b4fde8dc7ff3ba5ee/01-Data%20Ingestion/Reference%20Pictures/%7B57FFD2F6-A926-4079-A0A7-8CE696F2B0E5%7D.png)
+### 1️⃣ Create a new Fabric Lakehouse
 
 1. In **Microsoft Fabric**, go to your **Workspace**  
 2. Click **+ New item** → Select **Lakehouse**  
-
-![alt text](https://github.com/DavidArayaS/AI-Powered-Insights-Fraud-Detection-Hackathon/blob/cbc097fda45d32090f4d726b4fde8dc7ff3ba5ee/01-Data%20Ingestion/Reference%20Pictures/%7B55843AA2-7852-48F4-9FF3-7A32BD832729%7D.png)
-
 3. Fill in the details:  
    - **Name**: `YourLakehouse`  
-   - **Description**: Storage for Financial CSVs  
+   - **Location**:  Select the hackathon workspace
+   - **Check** the box for Lakehouse Schemas
    - Click **Create**  
-   - **Security**: Assign **Admin & Reader** permissions  
-
-
+  
 
 ✅ **Best Practice**: Keep a **structured folder hierarchy** in OneLake for organized data.  
 
@@ -87,13 +84,18 @@ By completing this challenge, you will:
 🔹 Download the **financial data ZIP file** from the following link:  
    🔗 [Financial Data.zip](https://github.com/vvenugopalan_microsoft/HackathonOct25/blob/main/Data/financial%20data.zip)  
 
-🔹 Extract the **ZIP file** on your local machine.  
+🔹 Extract the **ZIP file** on your local machine.  This should contain two JSON files
 
 
 ### 2️⃣ Upload Financial Data to OneLake  
+
+The goal here is to build the **Bronze** layer of the medallion architecture.  For this, create a bronze folder and load JSON data.  In future challanges folders and tables for silver and gold will be built.
+
 🔹 Open **Microsoft Fabric** → Navigate to **YourLakehouse**.  
 🔹 Click on **Files** (inside the Lakehouse).  
-🔹 Click **Upload Folder** → Select the extracted Folder with the **CSV files**.  
+🔹 Click the **Ellipsis** behind the **Files** and select **New Subfolder**
+🔹 Create a **Bronze** folder.
+🔹 Right-click the new Bronze folder and select **Upload** and update the file **tailwind_traders_retail_data.json**
 
 
 
@@ -106,23 +108,14 @@ By completing this challenge, you will:
 **Objective:** Establish proper access controls and security governance
 
 #### 1️⃣ RBAC Configuration
-1. Navigate to lakehouse **Settings** → **Security**
+1. Navigate to workspace **Manage Access**
 2. Configure role assignments:
-   ```
-   Admin Role: Your account + project team leads
-   Reader Role: Data analysts and consumers
-   Contributor Role: Data engineers and developers
-   ```
 
-#### 2️⃣ Data Access Validation
-1. Test read access with different user roles
-2. Verify proper permission inheritance
-3. Document access patterns for governance
+Admin, Member, Contributor, or Viewer as approriate
 
-#### ✅ Success Checkpoint
-- Security roles properly assigned
-- Access controls verified through testing
-- Audit logging enabled for compliance
+   🔗 [Security Roles](https://learn.microsoft.com/en-us/fabric/fundamentals/roles-workspaces)
+
+
 
 
 ## ✅ Success Criteria
@@ -138,19 +131,15 @@ By completing this challenge, you will:
 **Data Pipeline Foundation:**
 - [ ] Financial data successfully uploaded to Bronze layer
 - [ ] File integrity validated (all CSV files present)
-- [ ] Data accessible through Fabric SQL endpoints
-- [ ] Proper data governance structure established
 
 **Operational Readiness:**
 - [ ] Workspace operational with assigned capacity
 - [ ] Admin access configured for management tasks
-- [ ] Monitoring and alerting capabilities available
 - [ ] Documentation updated for team reference
 
 ### 🏆 Challenge Completion Indicators
 
-✅ **Bronze Data Layer** populated with financial transaction CSVs  
-✅ **Lakehouse SQL Endpoint** providing data access  
+✅ **Bronze Data Layer** populated with financial transaction JSON 
 ✅ **Security Governance** implemented with proper RBAC  
 ✅ **Architecture Foundation** ready for next challenge  
 
@@ -169,7 +158,7 @@ Solution:
 
 **🔴 Data Upload Failures**
 ```
-Problem: CSV files fail to upload to OneLake
+Problem: JSON files fail to upload to OneLake
 Solution:
 - Check file size limits (max 100MB per file)
 - Verify network connectivity and bandwidth
@@ -196,6 +185,31 @@ Solution:
 - Verify correct target folder path
 - Wait for metadata synchronization (5-10 minutes)
 ```
+
+**🔴Unable to Connect to Spark Session**
+```
+Problem: Cannot connect a new notebook to a spark session with error to stop existing session or scale up the Fabric capacity
+Solution: Try the following:
+-	Open a new code cell in the notebook. Run the following command: 
+# Stop the Spark session
+spark.stop()
+-	Try to connect the notebook to a New standard session
+-	Once connected, click on Stop session button  
+-	After session is stopped, connect to standard session again 
+-	This will ensure spark context is also started and running in the background
+```
+
+**🔴Copilot Authoring Disabled**
+```
+Problem: If getting message "Copilot authoring is currently disabled."
+Solution: To enable it, go to Power BI Settings and turn on Q&A for this semantic model” when creating report using Copilot (e.g. using prompt: Create a report using table gold*….), enable Q&A as follow:
+-	Open your workspace 
+-	Locate the semantic model you want to enable Copilot for from the list
+-	Click on the three dots (More options) next to your semantic model and select Settings
+-	Enable Q&A and Copilot: Toggle the switch to enable Q&A and Copilot for this semantic model.
+-	Hit Apply
+```
+
 
 ### 📞 Support Resources
 
@@ -245,7 +259,7 @@ Get-AzMetric -ResourceId <fabric-capacity-id>
 
 **After Challenge Completion:**
 1. **Review architecture** - Understand how components interact
-2. **Explore data** - Use SQL endpoint to query uploaded CSVs
+2. **Explore data** - Use SQL endpoint to query uploaded JSON
 3. **Plan Challenge 2** - Consider medallion architecture requirements
 4. **Document learnings** - Note any customizations or challenges faced
 

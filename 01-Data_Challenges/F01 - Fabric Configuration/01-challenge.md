@@ -5,7 +5,7 @@
 
 Your goal is to set up the **necessary infrastructure** to support a scalable data pipeline.  The following is a simplied view of the architecture of this set of challanges.
 
-![Architecture Overview](Architecture/details.png)
+![Architecture Overview](https://github.com/vvenugopalan_microsoft/HackathonOct25/blob/main/Architecture/details.png)
 
 > **Note:** If you **already completed the Fabric Capacity setup** as per the **prerequisites email**, you can **skip those steps** and proceed with the rest of the challenge.  
 
@@ -20,7 +20,7 @@ By completing this challenge, you will:
 ✅ Assign appropriate **permissions** in Fabric  
  
 
-> **Reminder:** This challenge is about **building the data pipeline**. You will not process the documents yet.  
+
 
 ---
 
@@ -43,17 +43,14 @@ By completing this challenge, you will:
 
 ---
 
-## 🚀 Step 2: Assign Fabric Capacity in Microsoft Fabric *(Skip if completed in prerequisites)*  
+## 🚀 Step 2: Create a Fabric Workspace 
 💡 **Why?** The Fabric workspace must be **assigned to a capacity** before you can use it.  
 
-### 1️⃣ Assign Fabric Capacity  
-🔹 In **Microsoft Fabric**, assign the **Fabric Capacity** to your workspace.  
 
-🔹 **Hint:** Where in the Fabric UI can you manage capacity assignments?  
 
 #### ✅ Success Checkpoint
 - Workspace shows assigned capacity in admin settings
-- Capacity utilization metrics appear in monitoring  
+ 
 
 ---
 
@@ -63,18 +60,18 @@ By completing this challenge, you will:
 ### 1️⃣ Create a Fabric Lakehouse  
 🔹 In **Microsoft Fabric**, create a **new Lakehouse** inside your workspace.  
 
-🔹 **Hint:** What folder structure would be best for organizing financial data?  
+🔹 **Hint:** What folder structure would be best for organizing financial data?  Remember we are building for a medallion architecture.
 
 ✅ **Best Practice**: Keep a **structured folder hierarchy** for better organization.  
 
 #### ✅ Success Checkpoint
 - Lakehouse appears in workspace with correct naming
 - Folder structure is visible in Files explorer
-- Proper permissions assigned (Admin/Reader roles)
+- Proper permissions assigned (Workspace or object roles)
 ---
 
 ## 🚀 Step 4: Download & Upload Financial Data to OneLake  
-💡 **Why?** Your **AI models** need structured **JSON** to analyze.  
+💡 **Why?** Your **AI models** need structured **data** to analyze.  
 
 ### 1️⃣ Download and Extract the Financial Data  
 🔹 Download the **financial data ZIP file** from the following link:  
@@ -90,7 +87,6 @@ By completing this challenge, you will:
 
 
 #### ✅ Success Checkpoint
-- File integrity maintained (size/format checks pass)
 - Data accessible through Fabric SQL endpoint
 
 ---
@@ -99,23 +95,20 @@ By completing this challenge, you will:
 **Objective:** Establish proper access controls and security governance
 
 #### 1️⃣ RBAC Configuration
-1. Navigate to lakehouse **Settings** → **Security**
+1. Navigate to lakehouse **Manage Access**
 2. Configure role assignments:
-   ```
-   Admin Role: Your account + project team leads
-   Reader Role: Data analysts and consumers
-   Contributor Role: Data engineers and developers
-   ```
+
+Admin, Member, Contributor, or Viewer as approriate
+
+   🔗 [Security Roles](https://learn.microsoft.com/en-us/fabric/fundamentals/roles-workspaces)
+
 
 #### 2️⃣ Data Access Validation
-1. Test read access with different user roles
-2. Verify proper permission inheritance
-3. Document access patterns for governance
+1. Test access with different user roles
+2. Document access patterns for governance
 
 #### ✅ Success Checkpoint
 - Security roles properly assigned
-- Access controls verified through testing
-- Audit logging enabled for compliance
 
 
 ## ✅ Success Criteria
@@ -131,19 +124,15 @@ By completing this challenge, you will:
 **Data Pipeline Foundation:**
 - [ ] Financial data successfully uploaded to Bronze layer
 - [ ] File integrity validated (all JSON files present)
-- [ ] Data accessible through Fabric SQL endpoints
-- [ ] Proper data governance structure established
 
 **Operational Readiness:**
 - [ ] Workspace operational with assigned capacity
 - [ ] Admin access configured for management tasks
-- [ ] Monitoring and alerting capabilities available
 - [ ] Documentation updated for team reference
 
 ### 🏆 Challenge Completion Indicators
 
 ✅ **Bronze Data Layer** populated with financial transaction JSON data  
-✅ **Lakehouse SQL Endpoint** providing data access  
 ✅ **Security Governance** implemented with proper RBAC  
 ✅ **Architecture Foundation** ready for next challenge  
 
@@ -189,6 +178,31 @@ Solution:
 - Verify correct target folder path
 - Wait for metadata synchronization (5-10 minutes)
 ```
+
+**🔴Unable to Connect to Spark Session**
+```
+Problem: Cannot connect a new notebook to a spark session with error to stop existing session or scale up the Fabric capacity
+Solution: Try the following:
+-	Open a new code cell in the notebook. Run the following command: 
+# Stop the Spark session
+spark.stop()
+-	Try to connect the notebook to a New standard session
+-	Once connected, click on Stop session button  
+-	After session is stopped, connect to standard session again 
+-	This will ensure spark context is also started and running in the background
+```
+
+**🔴Copilot Authoring Disabled**
+```
+Problem: If getting message "Copilot authoring is currently disabled."
+Solution: To enable it, go to Power BI Settings and turn on Q&A for this semantic model” when creating report using Copilot (e.g. using prompt: Create a report using table gold*….), enable Q&A as follow:
+-	Open your workspace 
+-	Locate the semantic model you want to enable Copilot for from the list
+-	Click on the three dots (More options) next to your semantic model and select Settings
+-	Enable Q&A and Copilot: Toggle the switch to enable Q&A and Copilot for this semantic model.
+-	Hit Apply
+```
+
 
 ### 📞 Support Resources
 

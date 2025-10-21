@@ -72,7 +72,7 @@ One possible method is to move this to a notebook to move this data. In this exa
     3.  Select **Notebook**
     4.  Reference the sample code below.
     5.  Confirm that your File location for the json file is correct and also confirm the name of the silver layer staging table that you intend to use for your destination.
-
+```
 from pyspark.sql import SparkSession
 
 import os
@@ -83,12 +83,13 @@ spark = SparkSession.builder.getOrCreate()
 
 \# Read JSON
 
-df = spark.read.option("multiline", "true").json("Files/Bronze/tailwind\_traders\_retail\_data.json")
+df = spark.read.option("multiline", "true").json("/lakehouse/default/Files/Bronze/tailwind_traders_retail_data.json")
+
 
 \# Write as Delta table (overwrite or 'append' as needed)
 
 df.write.format("delta").mode("overwrite").saveAsTable("dbo.silverstaging")
-
+```
 ## 3\. Create a CosmosDB NoSQL instance
 
 **Challenge**: Create a Cosmos TB no SQL instance to be used for the second data source in this challenge.
@@ -117,7 +118,7 @@ df.write.format("delta").mode("overwrite").saveAsTable("dbo.silverstaging")
 
 \- Set the Container id to something like Recommendations.
 
-\- For Partition key, enter /productID . This means our data will be partitioned by the "productID" field in each document.
+\- For Partition key, enter /ProductCategory . This means our data will be partitioned by the "ProductCategory" field in each document.
 
 \- Click OK to create the container.
 
@@ -140,7 +141,9 @@ df.write.format("delta").mode("overwrite").saveAsTable("dbo.silverstaging")
 \*\*Note: If you receive any permission errors with the upload, you may need to adjust your user permissions using Azure CLI
 
 *   *   Open the CLI from the upper right in the portal and run the following command
-        *   az resource update --resource-group "yourresourcegroup" --name "yourcosmosdbname" --resource-type "Microsoft.DocumentDB/databaseAccounts" --set properties.disableLocalAuth=false --set properties.disableKeyBasedMetadataWriteAccess=false
+```
+         az resource update --resource-group "yourresourcegroup" --name "yourcosmosdbname" --resource-type "Microsoft.DocumentDB/databaseAccounts" --set properties.disableLocalAuth=false --set properties.disableKeyBasedMetadataWriteAccess=false
+```
 
 ## 5\. Build the Data Integration from CosmosDB to Fabric**
 
@@ -167,9 +170,9 @@ Mirroring incrementally replicates Azure Cosmos DB data into Fabric OneLake in n
 **Create the Mirroring**
 
 1.  Navigate to the [Fabric portal](https://fabric.microsoft.com/) home.
-2.  Open an existing workspace or create a new workspace.
-3.  In the navigation menu, select **Create**.
-4.  Select **Create**, locate the **Data Warehouse** section, and then select **Mirrored Azure Cosmos DB (Preview)**.
+2.  Open your hackathon workspace.
+3.  In the navigation menu, select **New Item**.
+4.  Select **Mirrored Azure Cosmos DB (Preview)**.
 5.  Provide a name for the mirrored database and then select **Create**.
 6.  In the **New connection** section, select **Azure Cosmos DB for NoSQL**.
 7.  Provide the Azure Cosmos DB Endpoint, the connection name, authentication method, account key, or alternatively, the organizational account. These can all be found on the **Keys** setting on the CosmosDB resource in the Azure portal.
@@ -191,7 +194,7 @@ One method for doing this is with a notebook.
     2.  In the upper left, select **New Item**
     3.  Select **Notebook**
     4.  Reference the sample code below. Correct the mirrored database and table names to your environment
-
+```
 #Read data from shortcut
 
 df = spark.sql("SELECT \* FROM YourLakehouse. MirroredDatabaseName.TableName")
@@ -201,6 +204,8 @@ display(df)
 #Write data to Silver staging table
 
 df.write.format("delta").mode("overwrite").saveAsTable("dbo.SilverStagingAdditional")
+
+```
 
 **6\. Create a CSV file for Data Science**
 
@@ -213,6 +218,8 @@ Once again, a possible method for this is using a notebook.
     3.  Select **Notebook**
     4.  **The following code is an example of how this movement can be done. Please correct file paths and file names as needed.**
 
+
+```
 \# Step 1: Use Spark to read the JSON from Lakehouse mount
 
 json\_path = "abfss://HackathonBeta@onelake.dfs.fabric.microsoft.com/YourLakehouse.Lakehouse/Files/Bronze/tailwind\_traders\_retail\_data.json"
@@ -228,6 +235,7 @@ df\_pd = df\_spark.toPandas()
 csv\_path = "abfss://HackathonBeta@onelake.dfs.fabric.microsoft.com/YourLakehouse.Lakehouse/Files/Silver/tailwind\_traders\_retail\_data.csv"
 
 df\_pd.to\_csv(csv\_path, index=False)
+```
 
 **🔐 Security & Governance Considerations**
 
@@ -295,6 +303,30 @@ Solution:
 - Check dimension table unique keys
 - Validate join conditions in transformation logic
 - Test with small dataset first
+```
+
+**🔴Unable to Connect to Spark Session**
+```
+Problem: Cannot connect a new notebook to a spark session with error to stop existing session or scale up the Fabric capacity
+Solution: Try the following:
+-	Open a new code cell in the notebook. Run the following command: 
+# Stop the Spark session
+spark.stop()
+-	Try to connect the notebook to a New standard session
+-	Once connected, click on Stop session button  
+-	After session is stopped, connect to standard session again 
+-	This will ensure spark context is also started and running in the background
+```
+
+**🔴Copilot Authoring Disabled**
+```
+Problem: If getting message "Copilot authoring is currently disabled."
+Solution: To enable it, go to Power BI Settings and turn on Q&A for this semantic model” when creating report using Copilot (e.g. using prompt: Create a report using table gold*….), enable Q&A as follow:
+-	Open your workspace 
+-	Locate the semantic model you want to enable Copilot for from the list
+-	Click on the three dots (More options) next to your semantic model and select Settings
+-	Enable Q&A and Copilot: Toggle the switch to enable Q&A and Copilot for this semantic model.
+-	Hit Apply
 ```
 
 ### 📞 Support Resources
