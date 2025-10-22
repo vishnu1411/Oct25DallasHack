@@ -400,27 +400,57 @@ graph TB
 ---
 
 #### 🔥 AI03 - Multi-Agent System (3-4 hours)
-**Advanced Multi-Agent AI System**
+**Advanced Multi-Agent AI System with Custom Orchestration**
+
+**🏗️ Architecture Approach:**
+- **Custom Multi-Agent Orchestration** without heavyweight frameworks (LangChain, AutoGen, CrewAI)
+- **Shared Context Pattern** for agent communication via enriched data objects
+- **Sequential Processing Pipeline** with deterministic agent execution order
+- **Async/await architecture** for optimal performance and scalability
 
 **What You'll Build:**
-- **5 Specialized AI Agents** working in harmony (Intent Detector, Inventory, Alternatives, Recommendations, Response Formatter)
-- **Advanced Conversation Memory** that persists across sessions
-- **Smart Context Switching** with confirmatory response handling
-- **Production-ready VS Code terminal application** with comprehensive testing
-- **Beautiful Console Interface** with rich formatting and analytics
+- **🕵️ Intent Detector Agent** - Analyzes user queries with confidence scoring
+- **📦 Inventory Agent** - Real-time Azure Cognitive Search integration
+- **🔄 Alternatives Agent** - Smart alternative suggestions when items unavailable
+- **💡 Recommendations Agent** - AI-powered suggestions using Azure OpenAI
+- **📝 Response Formatter Agent** - Natural language response generation
+
+**🎯 Advanced Capabilities:**
+- **Advanced Conversation Memory** - Session persistence across multiple interactions
+- **Smart Context Switching** - Handles confirmatory responses ("yes" → show routers)
+- **Production Testing Framework** - VS Code terminal validation with comprehensive scenarios
+- **Beautiful Rich Console Interface** - Progress indicators, tables, and session analytics
+- **Enhanced Error Handling** - Graceful fallbacks and retry mechanisms
+
+**🏗️ Technical Framework** (Custom Implementation):
+```python
+# Shared Context Communication (No Direct Agent Messages)
+class ConversationContext:
+    intent: Intent           # ← IntentDetectorAgent  
+    search_results: Results  # ← InventoryAgent
+    recommendations: List    # ← RecommendationsAgent
+    
+# Sequential Processing Pipeline
+await intent_detector.process(context)     # Step 1
+await inventory_agent.process(context)     # Step 2  
+await recommendations_agent.process(context) # Step 3
+await response_formatter.process(context)  # Step 4
+```
 
 **Challenge Structure** (5 Milestones):
-1. **Project Setup and Configuration** - Agent architecture design and Azure service integration
-2. **Multi-Agent System Implementation** - Core orchestration system development
-3. **Test Implementation & Unit Testing** - Comprehensive testing of agent interactions
-4. **Production Application Testing** - VS Code terminal testing and validation
-5. **Enhanced Features & Production Readiness** - Advanced features and enterprise capabilities
+1. **🏗️ Project Setup and Configuration** - Agent architecture design and Azure service integration
+2. **🤖 Multi-Agent System Implementation** - Core orchestration system with shared context communication
+3. **🧪 Test Implementation & Unit Testing** - Comprehensive testing of agent interactions and edge cases
+4. **🚀 Production Application Testing** - VS Code terminal testing, validation, and interactive scenarios
+5. **⚡ Enhanced Features & Production Readiness** - Advanced conversation memory, analytics, and enterprise features
 
-**Key Skills:** Multi-agent orchestration, conversation memory, production testing, enterprise AI patterns
+**Key Skills:** Custom multi-agent orchestration, shared context patterns, conversation memory, production testing, Azure service integration
 
-**Prerequisites:** AI01 and AI02 completed, Python 3.12, understanding of agent frameworks
+**Framework Benefits:** Lightweight (minimal dependencies), transparent debugging, full control over agent behavior, high performance
 
-**Success Criteria:** Production-ready multi-agent system with natural conversation flow, memory persistence, and comprehensive testing validation
+**Prerequisites:** AI01 and AI02 completed, Python 3.12, understanding of async programming and Azure services
+
+**Success Criteria:** Production-ready multi-agent system with natural conversation flow, persistent memory, confirmatory response handling, and comprehensive testing validation
 
 ## 🎯 Learning Paths
 
@@ -436,10 +466,10 @@ Best For: Data engineers, analytics engineers, BI developers
 
 #### **AI Development Track**
 ```
-AI01: RAG Systems → AI02: Intelligent Agents → AI03: Advanced Patterns  
-Focus: Vector search, prompt engineering, agent frameworks
+AI01: RAG Systems → AI02: Intelligent Agents → AI03: Custom Multi-Agent Orchestration
+Focus: Vector search, prompt engineering, custom agent frameworks, shared context patterns
 Time Investment: 6-8 hours
-Best For: AI engineers, application developers, data scientists
+Best For: AI engineers, application developers, data scientists, solution architects
 ```
 
 #### **Full Stack Track**

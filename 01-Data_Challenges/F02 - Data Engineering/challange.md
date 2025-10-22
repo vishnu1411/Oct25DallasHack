@@ -16,12 +16,10 @@ Welcome to the Data Engineering challenge! This challenge focuses on transformin
 
 In this challenge, you will:  
 
-✅ Use two JSON data sources for source data. One uploaded directly to Fabric, and the other in a NoSQL instance.  
-✅ Set up an **Upload JSON to Fabric**  
-✅ Create a CosmosDB instance and **upload JSON to COSMOSDB**  
-✅ Move the data through a **Medallion Data Architecture** to a Silver staging layer for use in Challenge 3  
-✅ Assign **permissions**   
+✅ Move the 2 data sources data through a **Medallion Data Architecture** to a Silver staging layer for use in Challenge 3, starting with the data directly uploaded to Fabric.
+✅ Ingest the data from the CosmosDB instance. Move this data to **Silver** structured destination.
 ✅ **Produce a CSV version of the JSON file** for use with the AI workshop in day 2  
+✅ Assign **permissions** 
 
 ---
 
@@ -179,24 +177,7 @@ graph TB
 
 ---
 
-**🧩 Challenge Steps & Outcomes**
-1. Upload the JSON to Fabric (Bronze Layer)
-Challenge:
-Ingest the raw JSON file into Microsoft Fabric
-
-**Expected Outcome:**
-•	JSON file stored in the Lakehouse Files section
-•	Folder structure follows naming conventions (e.g., /bronze/retail_data/)
-
-
-**Pointers**:
-- Use **OneLake** for unified storage
-- Validate schema and file integrity
-- Consider using **Data Activator** for real-time alerts if applicable
-
----
-
-### 2. Move the JSON Data to Silver Staging Layer
+### 1. Move the JSON Data to Silver Staging Layer
 
 **Challenge**:  
 Cleanse and enrich the data, then store it in the Silver layer as a structured format (e.g., Parquet or Delta).
@@ -211,32 +192,7 @@ Cleanse and enrich the data, then store it in the Silver layer as a structured f
 
 ---
 
-### 3. Create a CosmosDB NoSQL instance
-
-**Challenge**:  
-Create a CosmosDB no SQL instance to be used for the second data source in this challenge.
-
-**Expected Outcome**:
-- CosmosDB create with NoSQL container
-
-**Pointers**:
-- Apply **role-based access control (RBAC)**
-
-
----
-
-### 4. Upload the Sample JSON Data
-
-**Challenge**:  
- Upload the sample data to finish creating the second data source for Fabric
-
-**Expected Outcome**:
-- JSON data uploaded successfully to the NoSQL database ready to be used as a Fabric datasource
-- What is a logical partition ID?
-
----
-
-### 5. Build the Data Integration from CosmosDB to Fabric
+### 2. Build the Data Integration from CosmosDB to Fabric
 
 **Challenge**:  Using the newly uploaded data in CosmosDB, move this data to Fabric with the end goal of landing this data in a structured format in our silver layer.
 
@@ -246,7 +202,8 @@ Create a CosmosDB no SQL instance to be used for the second data source in this 
 
 ---
 
-### 6. Create a CSV file for Data Science
+
+### 3. Create a CSV file for Data Science
 
 **Challenge:** Using a file from Fabric location, transform to a single JSON file containing one record for each row of the CSV. Store this file in the silver layer of the medallion architecture.
 
@@ -440,7 +397,7 @@ TBLPROPERTIES (
 Your data engineering pipeline now provides:
 
 **For AI Challenge 01 (RAG ChatBot):**
-- JSON datasets ready for vector embedding
+- JSON and CSV datasets ready for vector embedding
 - Clean, structured data for knowledge base
 - Optimized format for Azure AI Search indexing
 

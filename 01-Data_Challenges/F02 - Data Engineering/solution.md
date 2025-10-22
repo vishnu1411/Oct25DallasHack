@@ -6,9 +6,8 @@ Welcome to the Azure Fabric Hackathon! In this challenge, participants will work
 
 In this challenge, you will:
 
-✅ Use two JSON data sources for source data. One uploaded directly to Fabric, and the other in a NoSQL instance.  
-✅ Set up an **Upload JSON to Fabric**    
-✅ Create a CosmosDB instance and **upload JSON to COSMOSDB**  
+ 
+
 ✅ Move the data through a **Medallion Data Architecture** to a Silver staging layer for use in Challenge 3  
 ✅ Assign **permissions**   
 ✅ **Produce a CSV version of the JSON file** for use with the AI workshop in day 2  
@@ -33,25 +32,7 @@ By completing this challenge, you will master:
 
 ## 🧩 Challenge Steps & Outcomes
 
-## 1\. Upload the JSON to Fabric (Bronze Layer)
-
-**Challenge**:
-Ingest the raw JSON file into Microsoft Fabric
-
-**Expected Outcome**:
-
-*   JSON file stored in the Lakehouse Files section
-*   Folder structure follows naming conventions (e.g., /bronze/retail\_data/)
-
-🔹 Open **Microsoft Fabric** → Navigate to **YourLakehouse**.
-🔹 Click on **Files** (inside the Lakehouse).
-
-🔹 Click on the ellipsis after **Files** and select **New subfolder** and create the folder **Bronze.**
-
-
-🔹 Click  the ellipsis after the new **Bronze** subfolder and select upload files. Upload the file **tailwind**\_**traders\_retail\_data.json**.
-
-## 2\. Move the JSON Data to Silver Staging Layer
+## 1\. Move the JSON Data to Silver Staging Layer
 
 **Challenge**:
 Store the retail JSON data in the Silver layer as a structured format
@@ -90,62 +71,9 @@ df = spark.read.option("multiline", "true").json("/lakehouse/default/Files/Bronz
 
 df.write.format("delta").mode("overwrite").saveAsTable("dbo.silverstaging")
 ```
-## 3\. Create a CosmosDB NoSQL instance
-
-**Challenge**: Create a Cosmos TB no SQL instance to be used for the second data source in this challenge.
-
-**Setting up Cosmos DB**
-
-1\. Create a new Cosmos DB for NoSQL account named “contoso-cosmos” in the same resource group and region as previous resources. (In Azure Portal: Create Cosmos DB -> NoSQL -> fill in RG and name.)
-
-\- Sign in to the Azure Portal and click Create a resource. Search for "Azure Cosmos DB".
-
-\- Choose the Azure Cosmos DB for NoSQL option.
-
-\- Create a new account. Select your subscription and resource group, give the account a unique name (e.g., contoso-cosmos), and pick a region close to you.
-
-\- For this challenge, the default settings are fine. Click Review + create, then Create.
-
-2\. Database and Container: In the Cosmos DB account, under Data Explorer:
-
-\- Once the Cosmos DB account is ready, go to it in the Azure Portal. In the left menu, find Data Explorer.
-
-\- Select the New Database from the drop down menu right above \*\*Home\*\*. Name the database (for example, RetailData) and leave throughput as-is (we'll set it at the container level). Hit OK.
-
-\- Select the new DB and right click on the DB and select \*\*+ New Container\*\*.
-
-\- Select "Use existing" and select the DB which we created earlier
-
-\- Set the Container id to something like Recommendations.
-
-\- For Partition key, enter /ProductCategory . This means our data will be partitioned by the "ProductCategory" field in each document.
-
-\- Click OK to create the container.
-
-## 4\. Upload the Sample JSON Data
-
-**Challenge**: Upload the sample data to finish creating the second data source for Fabric
-
-*   In the Azure Portal, navigate to your CosmosDB instance.
-*   On the left menu select **Data Explorer**
-*   From the **Data Explorer** window, expand your **Container** and **Database** and select **Items.**
 
 
-
-*   From the top of the screen select **Upload Item**
-
-
-
-*   Upload the file **tailwind\_traders\_challange2\_data.json**
-
-\*\*Note: If you receive any permission errors with the upload, you may need to adjust your user permissions using Azure CLI
-
-*   *   Open the CLI from the upper right in the portal and run the following command
-```
-         az resource update --resource-group "yourresourcegroup" --name "yourcosmosdbname" --resource-type "Microsoft.DocumentDB/databaseAccounts" --set properties.disableLocalAuth=false --set properties.disableKeyBasedMetadataWriteAccess=false
-```
-
-## 5\. Build the Data Integration from CosmosDB to Fabric**
+## 2\. Build the Data Integration from CosmosDB to Fabric**
 
 **Challenge**: Using the newly uploaded data in CosmosDB, move this data to Fabric with the end goal of landing this data in a structured format in our silver layer.
 
@@ -207,7 +135,7 @@ df.write.format("delta").mode("overwrite").saveAsTable("dbo.SilverStagingAdditio
 
 ```
 
-**6\. Create a CSV file for Data Science**
+**3\. Create a CSV file for Data Science**
 
 **Challenge**: Using a file from Fabric location, transform to a single JSON file containing one record for each row of the CSV. Store this file in the silver layer of the medallion architecture.
 

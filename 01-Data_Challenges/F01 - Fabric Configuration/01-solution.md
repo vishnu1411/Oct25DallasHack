@@ -16,7 +16,9 @@ By completing this challenge, you will:
 
 ✅ Set up **Microsoft Fabric Capacity** *(skip if completed in prerequisites)*  
 ✅ Create a **OneLake Lakehouse** to store financial transactions  
+✅ Use two JSON data sources for source data. One uploaded directly to Fabric, and the other in a NoSQL instance.   
 ✅ Download, unzip, and upload **financial data** to **OneLake**  
+✅ Create a CosmosDB instance and **upload JSON to COSMOSDB**  
 ✅ Assign appropriate **permissions** in Fabric  
  
 
@@ -102,8 +104,64 @@ The goal here is to build the **Bronze** layer of the medallion architecture.  F
 ✅ **Outcome**: Your **financial data** is now available to be uploaded to OneLake.  
 
 ---
+## 🚀Step 5: Create a CosmosDB NoSQL instance
+
+**Challenge**: Create a Cosmos TB no SQL instance to be used for the second data source in this challenge.
+
+**Setting up Cosmos DB**
+
+1\. Create a new Cosmos DB for NoSQL account named “contoso-cosmos” in the same resource group and region as previous resources. (In Azure Portal: Create Cosmos DB -> NoSQL -> fill in RG and name.)
+
+\- Sign in to the Azure Portal and click Create a resource. Search for "Azure Cosmos DB".
+
+\- Choose the Azure Cosmos DB for NoSQL option.
+
+\- Create a new account. Select your subscription and resource group, give the account a unique name (e.g., contoso-cosmos), and pick a region close to you.
+
+\- For this challenge, the default settings are fine. Click Review + create, then Create.
+
+2\. Database and Container: In the Cosmos DB account, under Data Explorer:
+
+\- Once the Cosmos DB account is ready, go to it in the Azure Portal. In the left menu, find Data Explorer.
+
+\- Select the New Database from the drop down menu right above \*\*Home\*\*. Name the database (for example, RetailData) and leave throughput as-is (we'll set it at the container level). Hit OK.
+
+\- Select the new DB and right click on the DB and select \*\*+ New Container\*\*.
+
+\- Select "Use existing" and select the DB which we created earlier
+
+\- Set the Container id to something like Recommendations.
+
+\- For Partition key, enter /ProductCategory . This means our data will be partitioned by the "ProductCategory" field in each document.
+
+\- Click OK to create the container.
+
+## 🚀Step 6: Upload the Sample JSON Data
+
+**Challenge**: Upload the sample data to finish creating the second data source for Fabric
+
+*   In the Azure Portal, navigate to your CosmosDB instance.
+*   On the left menu select **Data Explorer**
+*   From the **Data Explorer** window, expand your **Container** and **Database** and select **Items.**
+
+
+
+*   From the top of the screen select **Upload Item**
+
+
+
+*   Upload the file **tailwind_traders_challange2_data.json**
+
+\*\*Note: If you receive any permission errors with the upload, you may need to adjust your user permissions using Azure CLI
+
+*   *   Open the CLI from the upper right in the portal and run the following command
+```
+         az resource update --resource-group "yourresourcegroup" --name "yourcosmosdbname" --resource-type "Microsoft.DocumentDB/databaseAccounts" --set properties.disableLocalAuth=false --set properties.disableKeyBasedMetadataWriteAccess=false
+```
+
+
 ---
-### Step 5: Configure Security & Permissions 🔐
+### 🚀Step 7: Configure Security & Permissions 🔐
 
 **Objective:** Establish proper access controls and security governance
 
@@ -126,6 +184,7 @@ Admin, Member, Contributor, or Viewer as approriate
 - [ ] Fabric Capacity provisioned and assigned (or free trial active)
 - [ ] OneLake Lakehouse created with proper naming
 - [ ] Organized folder structure implemented
+- [ ] CosmosDB provisoned and data uploaded
 - [ ] Security permissions configured correctly
 
 **Data Pipeline Foundation:**

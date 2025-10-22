@@ -16,11 +16,11 @@ By completing this challenge, you will:
 
 ✅ Set up **Microsoft Fabric Capacity** *(skip if completed in prerequisites)*  
 ✅ Create a **OneLake Lakehouse** to store financial transactions  
+✅ Use two JSON data sources for source data. One uploaded directly to Fabric, and the other in a NoSQL instance.  
 ✅ Download, unzip, and upload **financial data** to **OneLake**  
+✅ Create a CosmosDB instance and **upload JSON to COSMOSDB**  
 ✅ Assign appropriate **permissions** in Fabric  
  
-
-
 
 ---
 
@@ -90,7 +90,34 @@ By completing this challenge, you will:
 - Data accessible through Fabric SQL endpoint
 
 ---
-### Step 5: Configure Security & Permissions 🔐
+
+### 5. Create a CosmosDB NoSQL instance
+
+**Challenge**:  
+Create a CosmosDB no SQL instance to be used for the second data source in this challenge.
+
+**Expected Outcome**:
+- CosmosDB create with NoSQL container
+
+**Pointers**:
+- Apply **role-based access control (RBAC)**
+
+
+---
+
+### 6. Upload the Sample JSON Data
+
+**Challenge**:  
+ Upload the sample data to finish creating the second data source for Fabric
+
+**Expected Outcome**:
+- JSON data uploaded successfully to the NoSQL database ready to be used as a Fabric datasource
+- What is a logical partition ID?
+
+---
+
+
+### Step 7: Configure Security & Permissions 🔐
 
 **Objective:** Establish proper access controls and security governance
 
@@ -119,6 +146,7 @@ Admin, Member, Contributor, or Viewer as approriate
 - [ ] Fabric Capacity provisioned and assigned (or free trial active)
 - [ ] OneLake Lakehouse created with proper naming
 - [ ] Organized folder structure implemented
+- [ ] CosmosDB provisioned and data uploaded
 - [ ] Security permissions configured correctly
 
 **Data Pipeline Foundation:**
