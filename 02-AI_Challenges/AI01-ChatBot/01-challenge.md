@@ -92,7 +92,7 @@ Since we are time-bound, we will just use an imaginory retail data from a fictio
 First, use a dataflow Gen2 transformation on the files.  
 Second step is to convert the transformed files to csv using the snippet in a notebook:
 
-Once the storage account is created, create a container `refined-data` and upload all four CSV files into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
+Once the storage account is created, create a container `refined-data` and upload all two CSV files into the container (inside a folder named `csv-data` or `txt-data`). By the end of this step, you will have:
    - A **storage account** with a **container** inside
    - A **subfolder** in that container
    - All the files in CSV format inside that subfolder

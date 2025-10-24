@@ -76,6 +76,24 @@ with open('recommendations.json', 'w', encoding='utf-8') as out:
 
 ![Cosmos DB Query Output](<Reference Pictures/cosmos_query_ss.png>)
 
+
+> **Note:** If you encounter permission errors while uploading data to Cosmos DB, you may need to update your user permissions.
+
+You can do this using the Azure CLI directly from the Azure Portal:
+1. Open the Cloud Shell (CLI) from the upper right corner of the Azure Portal.
+2. Run the following command, replacing `"yourresourcegroup"` and `"yourcosmosdbname"` with your actual resource group and Cosmos DB account name:
+
+    ```bash
+    az resource update \
+      --resource-group "yourresourcegroup" \
+      --name "yourcosmosdbname" \
+      --resource-type "Microsoft.DocumentDB/databaseAccounts" \
+      --set properties.disableLocalAuth=false \
+      --set properties.disableKeyBasedMetadataWriteAccess=false
+    ```
+
+This command ensures that local authentication and key-based metadata write access are enabled for your Cosmos DB account, which may resolve permission issues during data upload.
+
 ## 🚀 Milestone #1: Result
 
 ---
